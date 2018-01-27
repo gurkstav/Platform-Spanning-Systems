@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MATCH</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="button_login">Login</string>
+    <string name="button_new_user">New user</string>
+</resources>
