@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nestedScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:focusable="true">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        android:id="@+id/LinearID"
+        android:focusable="true">
+
+
+        <Spinner
+            android:id="@+id/select_activity"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:entries="@array/search_activity_type"
+            android:visibility="visible" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/SearchButton"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:text="@string/search_activities"
+            android:textAllCaps="false" />
+
+
+
+
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.v4.widget.NestedScrollView>
