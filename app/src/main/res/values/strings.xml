@@ -22,4 +22,11 @@
     <string name="enter_time_of_activity">Time of activity</string>
     <string name="enter_number_of_participants">Number of participants</string>
     <string name="title_own_activities">Own activities</string>
+    <string name="search_activities">Search for Activities</string>
+    <string name="select_activity">Select Activity</string>
+    <string-array name="search_activity_type">Select Activity
+        <item>Select Activity</item>
+        <item>Something2</item>
+        <item>Something3</item>
+    </string-array>
 </resources>
