@@ -10,4 +10,16 @@
     <string name="title_activity_register">RegisterActivity</string>
     <string name="enter_name">Full name</string>
     <string name="title_activity_test">testActivity</string>
+    <string name="button_search_activity">Search activity</string>
+    <string name="button_create_activity">Create activity</string>
+    <string name="button_show_own_activity">Show own activity</string>
+    <string name="title_search_activity">Search activity</string>
+    <string name="button_search">Search</string>
+    <string name="title_create_activity">Create activity</string>
+    <string name="button_confirm_create_activity">Create activity</string>
+    <string name="enter_type_of_activity">Type of activity</string>
+    <string name="enter_date_of_activity">Date of activity</string>
+    <string name="enter_time_of_activity">Time of activity</string>
+    <string name="enter_number_of_participants">Number of participants</string>
+    <string name="title_own_activities">Own activities</string>
 </resources>
