@@ -1,20 +1,25 @@
 <resources>
     <string name="app_name">MATCH</string>
-    <string name="enter_email">Enter Email</string>
-    <string name="enter_password">Enter Password</string>
-    <string name="repeat_password">Repeat Password</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="repeat_password">Repeat password</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="button_login">Login</string>
-    <string name="button_new_user">New User</string>
+    <string name="button_new_user">New user</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
-    <string name="enter_name">Full Name</string>
+    <string name="enter_name">Full name</string>
     <string name="title_activity_test">testActivity</string>
-    <string name="search_activities">Search for Activities</string>
-    <string name="select_activity">Select Activity</string>
-    <string-array name="search_activity_type">Select Activity
-        <item>Select Activity</item>
-        <item>Something2</item>
-        <item>Something3</item>
-    </string-array>
+    <string name="button_search_activity">Search activity</string>
+    <string name="button_create_activity">Create activity</string>
+    <string name="button_show_own_activity">Show own activity</string>
+    <string name="title_search_activity">Search activity</string>
+    <string name="button_search">Search</string>
+    <string name="title_create_activity">Create activity</string>
+    <string name="button_confirm_create_activity">Create activity</string>
+    <string name="enter_type_of_activity">Type of activity</string>
+    <string name="enter_date_of_activity">Date of activity</string>
+    <string name="enter_time_of_activity">Time of activity</string>
+    <string name="enter_number_of_participants">Number of participants</string>
+    <string name="title_own_activities">Own activities</string>
 </resources>
