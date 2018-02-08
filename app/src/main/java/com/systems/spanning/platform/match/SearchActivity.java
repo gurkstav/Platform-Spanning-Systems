@@ -19,16 +19,16 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_search);
 
 
         spinner = findViewById(R.id.select_activity);
         spinner.setOnItemSelectedListener(new OnItemSelected());
 
+        searchButton = findViewById(R.id.SearchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.activity_login);
             }
         });
     }
