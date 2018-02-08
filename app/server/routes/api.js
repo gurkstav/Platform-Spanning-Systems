@@ -3,11 +3,11 @@ var express = require('express');
 var router = express.Router();
 
 //get models:
-var Status = require('../models/status');
+var Users = require('../models/users');
 
 //routes:
-Status.methods(['get', 'post', 'put', 'delete']);
-Status.register(router, '/status');
+Users.methods(['get', 'post', 'put', 'delete']);
+Users.register(router, '/users');
 
 //return router:
 module.exports = router;
