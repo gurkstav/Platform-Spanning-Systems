@@ -9,8 +9,11 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +31,14 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-
-        spinner = findViewById(R.id.select_activity);
-        spinner.setOnItemSelectedListener(new OnItemSelected());
-
     }
     public void SearchClick(View view){
         Intent intent = new Intent(this, MatchActivity.class);
+        startActivity(intent);
+    }
+
+    public void homeClick(View view){
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 

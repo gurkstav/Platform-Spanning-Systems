@@ -24,9 +24,24 @@
     <string name="title_own_activities">Own activities</string>
     <string name="search_activities">Search for Activities</string>
     <string name="select_activity">Select Activity</string>
-    <string-array name="search_activity_type">Select Activity
-        <item>Select Activity</item>
-        <item>Something2</item>
-        <item>Something3</item>
+    <string-array name="search_activity_type">
+        <item>Sport</item>
+        <item>Music</item>
+        <item>Outdoor</item>
+        <item>Events</item>
+        <item>Shopping</item>
+        <item>Games</item>
+        <item>Other</item>
     </string-array>
+    <string name="activity_type">Type of</string>
+    <string name="activity_date">Date</string>
+    <string name="activity_time">Time</string>
+    <string name="activity_location">Location</string>
+    <string name="min_participants">Min nr Participants</string>
+    <string name="max_participants">Max nr Participants</string>
+    <string name="activity_description">Description of Activity</string>
+    <string name="new_search">Make New Search</string>
+    <string name="newPassword">Enter Email to Send New Password</string>
+
+
 </resources>

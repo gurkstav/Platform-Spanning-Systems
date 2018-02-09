@@ -25,16 +25,23 @@ public class LoginActivity extends AppCompatActivity {
 
             }
 
-    public void Registerclick(View view){
+    public void RegisterClick(View view){
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
 
     }
 
-    public void Loginclick(View view){
+    public void LoginClick(View view){
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
 
     }
+
+    public void ForgotPasswordClick(View view){
+        Intent intent = new Intent(this, ForgotActivity.class);
+        startActivity(intent);
+
+    }
+
 
 }
