@@ -2,8 +2,6 @@ package com.systems.spanning.platform.match;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,19 +26,28 @@ public class MatchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
 
-
         matchList = new ArrayList<>();
-        adapter = new searchMatchAdapter(this, matchList);
-        Match a = new Match("True Romance", matchID);
-        Match b = new Match("sencond", matchID2);
-        matchList.add(a);
-        matchList.add(b);
+        //TODO: add to list
 
-        recyclerView = findViewById(R.id.searchResultsView);
+        if(matchList.isEmpty()){
+            setContentView(R.layout.activity_no_match);
+        }
+        else {
+            recyclerView = findViewById(R.id.searchResultsView);
+            adapter = new searchMatchAdapter(this, matchList);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(mLayoutManager);
+            recyclerView.addItemDecoration(new ItemDecorator(2, 30, true));
+            recyclerView.setAdapter(adapter);
+        }
+    }
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new ItemDecorator(2, 30, true));
-        recyclerView.setAdapter(adapter);
+    public void newSearchClick(View view){
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
+    public void homeClick(View view){
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
     }
 }
