@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void LoginClick(View view){
-        Intent intent = new Intent(this, SearchActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
 
     }

@@ -30,7 +30,17 @@ public class MatchActivity extends AppCompatActivity {
         //TODO: add to list
 
         if(matchList.isEmpty()){
-            setContentView(R.layout.activity_no_match);
+            Match a = new Match("a", R.drawable.nomatch);
+            matchList.add(a);
+            recyclerView = findViewById(R.id.searchResultsView);
+            adapter = new searchMatchAdapter(this, matchList);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(mLayoutManager);
+            recyclerView.addItemDecoration(new ItemDecorator(2, 30, true));
+            recyclerView.setAdapter(adapter);
+
+          //  setContentView(R.layout.activity_no_match);
+
         }
         else {
             recyclerView = findViewById(R.id.searchResultsView);

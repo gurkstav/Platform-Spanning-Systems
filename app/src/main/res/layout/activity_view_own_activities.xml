@@ -3,19 +3,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="100dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        android:text="@string/title_own_activities"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="end"
+        android:background="@drawable/home_button"
+        android:onClick="homeClick"
+        tools:layout_editor_absoluteX="333dp"
+        tools:layout_editor_absoluteY="16dp" />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
 
 </android.support.constraint.ConstraintLayout>
