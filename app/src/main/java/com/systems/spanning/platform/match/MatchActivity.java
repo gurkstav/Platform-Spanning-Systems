@@ -17,17 +17,13 @@ import java.util.List;
 public class MatchActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private searchMatchAdapter adapter;
-    private List<Match> matchList;
-    private int matchID = R.drawable.logo;
-    private int matchID2 = R.drawable.regbtn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
 
-        matchList = new ArrayList<>();
-        //TODO: add to list
+        ArrayList<Match> matchList = getIntent().getParcelableArrayListExtra("matchList");
 
         if(matchList.isEmpty()){
             Match a = new Match("a", R.drawable.nomatch);

@@ -27,12 +27,13 @@ public class searchMatchAdapter extends RecyclerView.Adapter<searchMatchAdapter.
     private List<Match> matchList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title;
-        public ImageView thumbnail;
+        private TextView title;
+        private ImageView thumbnail;
 
-        public MyViewHolder(View view) {
+        private MyViewHolder(View view) {
             super(view);
             thumbnail = view.findViewById(R.id.thumbnail);
+            title = view.findViewById(R.id.cardTitle);
         }
     }
 
@@ -53,6 +54,7 @@ public class searchMatchAdapter extends RecyclerView.Adapter<searchMatchAdapter.
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Match match = matchList.get(position);
+        holder.title.setText(match.getName());
         Glide.with(mContext).load(match.getThumbnail()).into(holder.thumbnail);
 
     }
