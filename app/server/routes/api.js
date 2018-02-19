@@ -1,13 +1,26 @@
-//dependencies:
-var express = require('express');
-var router = express.Router();
+module.exports = function(app){
+    var activities = require('../controllers/activitiesController');
+    var users = require('../controllers/usersController');
 
-//get models:
-var Users = require('../models/users');
+    //activities Routes
+    app.route('/activities')
+        .get(activities.list_all_activities)
+        .post(activities.create_a_activity);
 
-//routes:
-Users.methods(['get', 'post', 'put', 'delete']);
-Users.register(router, '/users');
+    app.route('activities/:activityId')
+        .get(activities.read_a_activity)
+        .put(activities.update_a_activity)
+        .delete(activities.delete_a_activity);
 
-//return router:
-module.exports = router;
+    // users Routes
+    app.route('/users')
+        .get(users.list_all_users)
+        .post(users.create_a_user);
+
+    app.route('/users/:userId')
+        .get(users.read_a_user)
+        .put(users.update_a_user)
+        .delete(users.delete_a_user);
+
+
+};
