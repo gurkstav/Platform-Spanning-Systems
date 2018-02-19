@@ -35,6 +35,7 @@ public class SearchActivity extends AppCompatActivity implements GetDataInterfac
         setContentView(R.layout.activity_search);
 
 
+
     }
     public void SearchClick(View view){
         new GetData("http://www.android.com/",this).execute();

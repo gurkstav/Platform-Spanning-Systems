@@ -9,7 +9,7 @@ import android.view.View;
  * Created by Marcus on 2018-02-09.
  */
 
-public class ForgotActivity extends AppCompatActivity{
+public class ForgotPasswordActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

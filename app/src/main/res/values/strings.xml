@@ -42,6 +42,7 @@
     <string name="activity_description">Description of Activity</string>
     <string name="new_search">Make New Search</string>
     <string name="newPassword">Enter Email to Send New Password</string>
+    <string name="wrongPassword">Wrong Password or Email</string>
 
 
 </resources>
