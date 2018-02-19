@@ -1,21 +1,14 @@
 package com.systems.spanning.platform.match;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.CheckBox;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.TextView;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements GetDataInterface{
 
 
     @Override
@@ -23,7 +16,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-            }
+
+    }
 
     public void RegisterClick(View view){
         Intent intent = new Intent(this, RegisterActivity.class);
@@ -32,16 +26,43 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void LoginClick(View view){
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
+        new GetData("http://localhost:3000/login", this).execute();
 
     }
 
     public void ForgotPasswordClick(View view){
-        Intent intent = new Intent(this, ForgotActivity.class);
+        Intent intent = new Intent(this, ForgotPasswordActivity.class);
         startActivity(intent);
 
     }
 
+    @Override
+    public void fetchDataCallback(String result) {
+        AlphaAnimation alphaAnim = new AlphaAnimation(1.0f,0.0f);
+        alphaAnim.setStartOffset(5000);                        // start in 5 seconds
+        alphaAnim.setDuration(400);
+        alphaAnim.setAnimationListener(new Animation.AnimationListener(){
 
+            @Override
+            public void onAnimationStart(Animation animation) {
+                findViewById(R.id.wrongPasswordText).setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation)
+            {
+                findViewById(R.id.wrongPasswordText).setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        findViewById(R.id.wrongPasswordText).setAnimation(alphaAnim);
+
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }
 }
