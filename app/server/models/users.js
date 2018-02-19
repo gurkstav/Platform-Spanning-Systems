@@ -1,9 +1,9 @@
-//dependencies:
-var restful = require('node-restful');
-var mongoose = restful.mongoose;
+'use strict';
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 //Schema:
-var usersSchema = new mongoose.Schema({
+var usersSchema = new Schema({
     full_name: {type: String, required: true},
     ssn: {type: Number, required: true},
     email: {type: String, required: true},
@@ -13,5 +13,5 @@ var usersSchema = new mongoose.Schema({
 );
 
 //return models:
-module.exports = restful.model('users', usersSchema);
+module.exports = mongoose.model('users', usersSchema);
 
