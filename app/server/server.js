@@ -1,19 +1,25 @@
 //dependencies
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
+var express = require('express'),
+    app = express(),
+    port = process.env.PORT || 1000,
+    mongoose = require('mongoose'),
+    activities = require('./models/activities'),
+    users = require('./models/users'),
+    bodyParser = require('body-parser');
 
 //connect to mongoDB:
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://Matilda:playdate123@ds123658.mlab.com:23658/playdate');
 
 //express:
-var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 //routes:
-app.use('/api', require('./routes/api'));
+var routes = require('./routes/api');
+routes(app);
+//app.use('/activity_api', require('./routes/activity_api'), Activities);
 
 //start server:
-app.listen(1000);
-console.log('Server is running on port 1000');
+app.listen(port);
+console.log('Server is running on port:' + port);
