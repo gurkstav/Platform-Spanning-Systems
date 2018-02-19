@@ -1,8 +1,8 @@
 var mongoose = require('mongoose'),
-    Activity = mongoose.model('Activities');
+    Activity = mongoose.model('activities');
 
 exports.list_all_activities = function(req, res){
-    Task.find({}, function(err, activity){
+    Activity.find({}, function(err, activity){
         if (err)
             res.send(err);
         res.json(activity);
@@ -18,7 +18,7 @@ exports.create_a_activity = function(req, res){
     });
 };
 
-exports.read_a_task = function(req, res){
+exports.read_a_activity = function(req, res){
     Activity.findById(req.params.activityId, function(err, activity){
         if (err)
           res.send(err);
@@ -34,7 +34,7 @@ exports.update_a_activity = function(req, res){
     });
 };
 
-exports.delete_a_task = function(req, res){
+exports.delete_a_activity = function(req, res){
 
     Activity.remove({
         _id: req.params.activityId
