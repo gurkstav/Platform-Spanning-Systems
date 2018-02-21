@@ -49,6 +49,7 @@
                 android:hint="@string/activity_type"
                 android:inputType="text"
                 android:maxLines="1" />
+
         </android.support.design.widget.TextInputLayout>
 
 

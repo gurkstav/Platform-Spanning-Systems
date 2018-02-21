@@ -43,6 +43,10 @@
     <string name="new_search">Make New Search</string>
     <string name="newPassword">Enter Email to Send New Password</string>
     <string name="wrongPassword">Wrong Password or Email</string>
+    <string name="button_pick_location">Pick location</string>
+    <string name="button_pick_date_time">Pick a date and time</string>
+    <string name="button_participant_amount">Participant amount</string>
+    <string name="google_place_api">AIzaSyAsrAGHKloZudbQw5FxVDOshWrYsqV7elM</string>
 
 
 </resources>
