@@ -80,20 +80,40 @@
             android:layout_gravity="center_horizontal"
             android:text="" />
 
-        <TextView
-            android:id="@+id/tv"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:text="Select a number..."
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Select minimum \namount of \nparticipants: " />
 
-        <NumberPicker
-            android:id="@+id/np"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv"
-            android:layout_gravity="center_horizontal" />
+            <NumberPicker
+                android:id="@+id/np"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleX="0.50"
+                android:scaleY="0.50"
+                android:layout_below="@id/tv" />
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Select maximum \namount of \nparticipants: " />
+
+            <NumberPicker
+                android:id="@+id/np2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleX="0.50"
+                android:scaleY="0.50"
+                android:layout_below="@id/tv" />
+        </LinearLayout>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/create_activity"

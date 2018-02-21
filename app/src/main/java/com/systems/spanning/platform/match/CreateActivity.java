@@ -49,28 +49,34 @@ public class CreateActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_activity);
 
-        //Get the widgets reference from XML layout
         final TextView tv = findViewById(R.id.tv);
         NumberPicker np = findViewById(R.id.np);
 
-        //Set TextView text color
-        tv.setTextColor(Color.parseColor("#ffd32b3b"));
+        final TextView tv2 = findViewById(R.id.tv2);
+        NumberPicker np2 = findViewById(R.id.np2);
 
-        //Populate NumberPicker values from minimum and maximum value range
-        //Set the minimum value of NumberPicker
+        tv.setTextColor(Color.parseColor("#000000"));
+        tv2.setTextColor(Color.parseColor("#000000"));
+
         np.setMinValue(0);
-        //Specify the maximum value/number of NumberPicker
-        np.setMaxValue(10);
-
-        //Gets whether the selector wheel wraps when reaching the min/max value.
+        np.setMaxValue(100);
         np.setWrapSelectorWheel(true);
 
-        //Set a value change listener for NumberPicker
+        np2.setMinValue(0);
+        np2.setMaxValue(100);
+        np2.setWrapSelectorWheel(true);
+
         np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal){
-                //Display the newly selected number from picker
-                tv.setText("Select minimum amount of participants: " + newVal);
+                tv.setText(newVal);
+            }
+        });
+
+        np2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal2, int newVal2){
+                tv2.setText(newVal2);
             }
         });
 
