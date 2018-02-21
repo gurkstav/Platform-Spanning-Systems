@@ -30,7 +30,7 @@
             android:layout_width="250dp"
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="10dp"
             android:entries="@array/search_activity_type"/>
 
         <android.support.design.widget.TextInputLayout
@@ -80,13 +80,20 @@
             android:layout_gravity="center_horizontal"
             android:text="" />
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/participant_amount"
-            android:layout_width="250dp"
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/button_participant_amount"
-            android:textAllCaps="false" />
+            android:textSize="25dp"
+            android:text="Select a number..."
+            android:layout_gravity="center_horizontal" />
+
+        <NumberPicker
+            android:id="@+id/np"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv"
+            android:layout_gravity="center_horizontal" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/create_activity"
@@ -95,8 +102,6 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/button_create_activity"
             android:textAllCaps="false" />
-
-
 
 
     </android.support.v7.widget.LinearLayoutCompat>

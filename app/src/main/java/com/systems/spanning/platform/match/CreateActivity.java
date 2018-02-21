@@ -1,15 +1,19 @@
 package com.systems.spanning.platform.match;
 
+import android.graphics.Color;
+import android.os.Bundle;
 import android.app.Activity;
+import android.widget.TextView;
+import android.widget.NumberPicker;
+
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.os.Bundle;
+
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -44,6 +48,31 @@ public class CreateActivity extends AppCompatActivity implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_activity);
+
+        //Get the widgets reference from XML layout
+        final TextView tv = findViewById(R.id.tv);
+        NumberPicker np = findViewById(R.id.np);
+
+        //Set TextView text color
+        tv.setTextColor(Color.parseColor("#ffd32b3b"));
+
+        //Populate NumberPicker values from minimum and maximum value range
+        //Set the minimum value of NumberPicker
+        np.setMinValue(0);
+        //Specify the maximum value/number of NumberPicker
+        np.setMaxValue(10);
+
+        //Gets whether the selector wheel wraps when reaching the min/max value.
+        np.setWrapSelectorWheel(true);
+
+        //Set a value change listener for NumberPicker
+        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+                //Display the newly selected number from picker
+                tv.setText("Select minimum amount of participants: " + newVal);
+            }
+        });
 
         button_pick_date_time = findViewById(R.id.button_pick_date_time);
         pick_date_time_results = findViewById(R.id.pick_date_time_results);
@@ -121,4 +150,5 @@ public class CreateActivity extends AppCompatActivity implements
         pick_date_time_results.setText("Date: " + dayFinal + "-" + monthFinal + "-" + yearFinal + "\n" +
                 "Time: " + hourFinal + ":" + minuteFinal);
     }
+
 }
