@@ -38,7 +38,7 @@ public class SearchActivity extends AppCompatActivity implements GetDataInterfac
 
     }
     public void SearchClick(View view){
-        new GetData("http://www.android.com/",this).execute();
+        new GetData("http://localhost:1000/activities",this).execute();
     }
 
     public void homeClick(View view){
@@ -48,7 +48,8 @@ public class SearchActivity extends AppCompatActivity implements GetDataInterfac
 
     @Override
     public void fetchDataCallback(String result) {
-            Match a = new Match("first one", R.drawable.regbtn);
+            Log.d("result", result);
+            Match a = new Match(result, R.drawable.regbtn);
             ArrayList<Match> matchList = new ArrayList<>();
             matchList.add(a);
 

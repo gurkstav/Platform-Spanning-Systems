@@ -25,7 +25,7 @@ public class GetData extends AsyncTask<Void, Void, String>{
     }
 
     @Override
-    protected String doInBackground(Void... urls) {
+    protected String doInBackground(Void... params) {
         StringBuilder result = new StringBuilder();
         try {
             URL url = new URL(this.url);
