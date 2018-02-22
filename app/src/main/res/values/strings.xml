@@ -49,6 +49,7 @@
     <string name="button_pick_date_time">Pick a date and time</string>
     <string name="button_participant_amount">Participant amount</string>
     <string name="google_place_api">AIzaSyAsrAGHKloZudbQw5FxVDOshWrYsqV7elM</string>
+    <string name="enter_SSN">Enter SSN</string>
 
 
 </resources>
