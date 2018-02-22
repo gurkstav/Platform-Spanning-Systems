@@ -25,73 +25,104 @@
         tools:layout_editor_absoluteX="333dp"
         tools:layout_editor_absoluteY="16dp" />
 
-        <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="68dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/enter_type_of_activity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/select_activity"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:entries="@array/search_activity_type"/>
 
-        <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/enter_date_of_activity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayoutActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp">
 
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/enter_time_of_activity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/enter_number_of_participants"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/textInputActivityType"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_type"
+                android:inputType="text"
+                android:maxLines="1" />
 
-        <Button
-            android:id="@+id/button5"
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/button_pick_date_time"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/button_pick_date_time"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/pick_date_time_results"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/pick_location_button"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/button_pick_location"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/pick_location_results"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="64dp"
-            android:text="@string/button_confirm_create_activity"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText4" />
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Select minimum \namount of \nparticipants: " />
+
+            <NumberPicker
+                android:id="@+id/np"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleX="0.50"
+                android:scaleY="0.50"
+                android:layout_below="@id/tv" />
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Select maximum \namount of \nparticipants: " />
+
+            <NumberPicker
+                android:id="@+id/np2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleX="0.50"
+                android:scaleY="0.50"
+                android:layout_below="@id/tv" />
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/create_activity"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/button_create_activity"
+            android:textAllCaps="false" />
+
+
     </android.support.v7.widget.LinearLayoutCompat>
 </android.support.constraint.ConstraintLayout>

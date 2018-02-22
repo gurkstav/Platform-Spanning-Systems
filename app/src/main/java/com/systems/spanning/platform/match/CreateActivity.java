@@ -1,14 +1,19 @@
 package com.systems.spanning.platform.match;
 
+import android.graphics.Color;
+import android.os.Bundle;
+import android.app.Activity;
+import android.widget.TextView;
+import android.widget.NumberPicker;
+
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.os.Bundle;
+
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -25,29 +30,58 @@ import java.util.Calendar;
 public class CreateActivity extends AppCompatActivity implements
         DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
 
-    /**
     public void newSearchClick(View view){
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
-     */
 
     Button button_pick_date_time;
     TextView pick_date_time_results;
-
     int day, month, year, hour, minute;
     int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
 
     int PLACE_PICKER_REQUEST = 1;
+    Button button_pick_location;
+    TextView pick_location_results;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_activity);
 
+        final TextView tv = findViewById(R.id.tv);
+        NumberPicker np = findViewById(R.id.np);
 
-        button_pick_date_time = (Button) findViewById(R.id.button_pick_date_time);
-        pick_date_time_results = (TextView) findViewById(R.id.pick_date_time_results);
+        final TextView tv2 = findViewById(R.id.tv2);
+        NumberPicker np2 = findViewById(R.id.np2);
+
+        tv.setTextColor(Color.parseColor("#000000"));
+        tv2.setTextColor(Color.parseColor("#000000"));
+
+        np.setMinValue(0);
+        np.setMaxValue(100);
+        np.setWrapSelectorWheel(true);
+
+        np2.setMinValue(0);
+        np2.setMaxValue(100);
+        np2.setWrapSelectorWheel(true);
+
+        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+                tv.setText(newVal);
+            }
+        });
+
+        np2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal2, int newVal2){
+                tv2.setText(newVal2);
+            }
+        });
+
+        button_pick_date_time = findViewById(R.id.button_pick_date_time);
+        pick_date_time_results = findViewById(R.id.pick_date_time_results);
 
         button_pick_date_time.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,21 +91,23 @@ public class CreateActivity extends AppCompatActivity implements
                 month = c.get(Calendar.MONTH);
                 day = c.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(CreateActivity.this, CreateActivity.this,
+                DatePickerDialog datePickerDialog = new DatePickerDialog(CreateActivity.this, (DatePickerDialog.OnDateSetListener) CreateActivity.this,
                         year, month, day);
                 datePickerDialog.show();
             }
         });
 
-        Button pick_location = (Button) findViewById(R.id.button_pick_location);
-        pick_location.setOnClickListener(new View.OnClickListener() {
+        button_pick_location = findViewById(R.id.pick_location_button);
+        pick_location_results = findViewById(R.id.pick_location_results);
+
+        button_pick_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
 
                 Intent intent;
                 try {
-                    intent = builder.build(getApplicationContext());
+                    intent = builder.build((Activity) getApplicationContext());
                     startActivityForResult(intent, PLACE_PICKER_REQUEST);
                 } catch (GooglePlayServicesRepairableException e) {
                     e.printStackTrace();
@@ -85,9 +121,9 @@ public class CreateActivity extends AppCompatActivity implements
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
-                Place place = PlacePicker.getPlace(data, this);
+                Place place = PlacePicker.getPlace(this, data);
                 String address = String.format("Place: %s", place.getAddress());
-                get_place.setText(address);
+                pick_location_results.setText(address);
             }
         }
     }
@@ -107,7 +143,7 @@ public class CreateActivity extends AppCompatActivity implements
         hour = c.get(Calendar.HOUR_OF_DAY);
         minute = c.get(Calendar.MINUTE);
 
-        TimePickerDialog timePickerDialog = new TimePickerDialog(CreateActivity.this, CreateActivity.this,
+        TimePickerDialog timePickerDialog = new TimePickerDialog(CreateActivity.this, (TimePickerDialog.OnTimeSetListener) CreateActivity.this,
                 hour, minute, android.text.format.DateFormat.is24HourFormat(this));
         timePickerDialog.show();
     }
@@ -120,4 +156,5 @@ public class CreateActivity extends AppCompatActivity implements
         pick_date_time_results.setText("Date: " + dayFinal + "-" + monthFinal + "-" + yearFinal + "\n" +
                 "Time: " + hourFinal + ":" + minuteFinal);
     }
+
 }
