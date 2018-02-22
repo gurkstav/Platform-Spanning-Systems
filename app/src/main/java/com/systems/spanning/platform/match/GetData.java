@@ -3,6 +3,9 @@ package com.systems.spanning.platform.match;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -14,10 +17,12 @@ import java.net.URL;
  * Created by Marcus on 2018-02-16.
  */
 
-public class GetData extends AsyncTask<Void, Void, String>{
+public class GetData extends AsyncTask<Void, Void, JSONArray>{
     private HttpURLConnection urlConnection;
     private String url;
     private GetDataInterface callbackInterface;
+    JSONArray jsonResponse = null;
+    private String json;
 
     public GetData(String url, GetDataInterface callbackInterface) {
         this.url = url;
@@ -25,7 +30,7 @@ public class GetData extends AsyncTask<Void, Void, String>{
     }
 
     @Override
-    protected String doInBackground(Void... params) {
+    protected JSONArray doInBackground(Void... params) {
         StringBuilder result = new StringBuilder();
         try {
             URL url = new URL(this.url);
@@ -36,17 +41,26 @@ public class GetData extends AsyncTask<Void, Void, String>{
             while ((line = reader.readLine()) != null) {
                 result.append(line);
             }
+            json = result.toString();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             urlConnection.disconnect();
         }
-        return result.toString();
+
+        try {
+            jsonResponse = new JSONArray(json);
+        } catch (JSONException e) {
+            Log.e("JSON Parser", "Error parsing data " + e.toString());
+        }
+
+
+        return jsonResponse;
     }
 
     @Override
-    protected void onPostExecute(String result) {
-        super.onPostExecute(result);
-        this.callbackInterface.fetchDataCallback(result);
+    protected void onPostExecute(JSONArray jsonResponse) {
+        super.onPostExecute(jsonResponse);
+        this.callbackInterface.fetchDataCallback(jsonResponse);
     }
 }

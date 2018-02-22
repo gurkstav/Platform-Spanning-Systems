@@ -26,7 +26,7 @@ public class MatchActivity extends AppCompatActivity {
         ArrayList<Match> matchList = getIntent().getParcelableArrayListExtra("matchList");
 
         if(matchList.isEmpty()){
-            Match a = new Match("a", R.drawable.nomatch);
+            Match a = new Match(null, null, null, 0, 0, null, R.drawable.nomatch);
             matchList.add(a);
             recyclerView = findViewById(R.id.searchResultsView);
             adapter = new searchMatchAdapter(this, matchList);
@@ -35,7 +35,6 @@ public class MatchActivity extends AppCompatActivity {
             recyclerView.addItemDecoration(new ItemDecorator(2, 30, true));
             recyclerView.setAdapter(adapter);
 
-          //  setContentView(R.layout.activity_no_match);
 
         }
         else {

@@ -8,16 +8,32 @@ import android.os.Parcelable;
  */
 
 public class Match implements Parcelable {
-    private String name;
+    private String type;
+    private String date;
+    private String location;
+    private int min_participants;
+    private int max_participants;
+    private String email;
     private int thumbnail;
 
-    public Match(String name, int thumbnail) {
-        this.name = name;
-        this.thumbnail = thumbnail;
+
+    public Match(String Type, String Date, String Location, int Min_participants, int Max_participants, String Email, int Thumbnail) {
+        this.type = Type;
+        this.date = Date;
+        this.location = Location;
+        this.max_participants = Max_participants;
+        this.min_participants = Min_participants;
+        this.email = Email;
+        this.thumbnail = Thumbnail;
     }
 
     public Match (Parcel parcel) {
-        this.name = parcel.readString();
+        this.type = parcel.readString();
+        this.date = parcel.readString();
+        this.location = parcel.readString();
+        this.max_participants = parcel.readInt();
+        this.min_participants = parcel.readInt();
+        this.email = parcel.readString();
         this.thumbnail = parcel.readInt();
     }
 
@@ -27,7 +43,12 @@ public class Match implements Parcelable {
     }
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
+        dest.writeString(type);
+        dest.writeString(date);
+        dest.writeString(location);
+        dest.writeInt(max_participants);
+        dest.writeInt(min_participants);
+        dest.writeString(email);
         dest.writeInt(thumbnail);
     }
 
@@ -45,12 +66,56 @@ public class Match implements Parcelable {
 
     };
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getMax_participants() {
+
+        return max_participants;
+    }
+
+    public void setMax_participants(int max_participants) {
+        this.max_participants = max_participants;
+    }
+
+    public int getMin_participants() {
+
+        return min_participants;
+    }
+
+    public void setMin_participants(int min_participants) {
+        this.min_participants = min_participants;
+    }
+
+    public String getLocation() {
+
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDate() {
+
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getThumbnail() {

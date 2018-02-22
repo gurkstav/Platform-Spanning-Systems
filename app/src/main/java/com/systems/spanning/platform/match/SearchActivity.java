@@ -15,6 +15,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +43,7 @@ public class SearchActivity extends AppCompatActivity implements GetDataInterfac
 
     }
     public void SearchClick(View view){
-        new GetData("http://localhost:1000/activities",this).execute();
+        new GetData("http://192.168.1.2:1000/activities",this).execute();
     }
 
     public void homeClick(View view){
@@ -47,11 +52,27 @@ public class SearchActivity extends AppCompatActivity implements GetDataInterfac
     }
 
     @Override
-    public void fetchDataCallback(String result) {
-            Log.d("result", result);
-            Match a = new Match(result, R.drawable.regbtn);
-            ArrayList<Match> matchList = new ArrayList<>();
+    public void fetchDataCallback(JSONArray result) {
+        ArrayList<Match> matchList = new ArrayList<>();
+
+        for (int i = 0; i < 1/*result.length()*/; i++) {
+            try{
+            JSONObject activity = result.getJSONObject(i);
+            String type = activity.getString("type");
+            String date = activity.getString("date");
+            String location = activity.getString("location");
+            int max_part = activity.getInt("max_participants");
+            int min_part = activity.getInt("min_participants");
+            Match a = new Match(type, date, location, min_part, max_part,"hej@test.se", 0);
             matchList.add(a);
+            }
+            catch(JSONException e){
+            }
+
+
+        }
+
+
 
             Intent intent = new Intent(this, MatchActivity.class);
             intent.putParcelableArrayListExtra("matchList", matchList);

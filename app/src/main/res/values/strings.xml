@@ -33,16 +33,18 @@
         <item>Games</item>
         <item>Other</item>
     </string-array>
-    <string name="activity_type">Type of</string>
-    <string name="activity_date">Date</string>
-    <string name="activity_time">Time</string>
-    <string name="activity_location">Location</string>
-    <string name="min_participants">Min nr Participants</string>
-    <string name="max_participants">Max nr Participants</string>
-    <string name="activity_description">Description of Activity</string>
+    <string name="chooseActivity">Type of Activity</string>
+    <string name="activity_type">Type of Activity: %1$s</string>
+    <string name="activity_date">Date: %1$s</string>
+    <string name="activity_time">Time: %1$s</string>
+    <string name="activity_location">Location: %1$s</string>
+    <string name="min_participants">Min nr Participants: %1$s</string>
+    <string name="max_participants">Max nr Participants: %1$s</string>
+    <string name="activity_description">Description of Activity: %1$s</string>
     <string name="new_search">Make New Search</string>
     <string name="newPassword">Enter Email to Send New Password</string>
     <string name="wrongPassword">Wrong Password or Email</string>
+    <string name="userEmail">Creators Email: %1$s</string>
 
 
 </resources>

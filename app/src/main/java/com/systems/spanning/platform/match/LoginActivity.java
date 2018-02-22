@@ -8,6 +8,9 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class LoginActivity extends AppCompatActivity implements GetDataInterface{
 
 
@@ -26,7 +29,7 @@ public class LoginActivity extends AppCompatActivity implements GetDataInterface
     }
 
     public void LoginClick(View view){
-        new GetData("http://localhost:3000/login", this).execute();
+        new GetData("http://192.168.1.2:1000/activities", this).execute();
 
     }
 
@@ -37,7 +40,7 @@ public class LoginActivity extends AppCompatActivity implements GetDataInterface
     }
 
     @Override
-    public void fetchDataCallback(String result) {
+    public void fetchDataCallback(JSONArray result) {
         AlphaAnimation alphaAnim = new AlphaAnimation(1.0f,0.0f);
         alphaAnim.setStartOffset(5000);                        // start in 5 seconds
         alphaAnim.setDuration(400);
