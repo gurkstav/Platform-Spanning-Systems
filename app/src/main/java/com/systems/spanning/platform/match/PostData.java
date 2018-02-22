@@ -43,6 +43,8 @@ public class PostData extends AsyncTask<Void, Void, String> {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoInput(true);
             urlConnection.setDoOutput(true);
+            urlConnection.setReadTimeout(10000 /* milliseconds */ );
+            urlConnection.setConnectTimeout(15000 /* milliseconds */ );
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.setRequestMethod("POST");
 
@@ -52,22 +54,16 @@ public class PostData extends AsyncTask<Void, Void, String> {
                 writer.flush();
             }
 
-            int statusCode = urlConnection.getResponseCode();
-
-            if (statusCode ==  200) {
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+
 
                 String line;
                 while ((line = reader.readLine()) != null) {
                     result.append(line);
                 }
-                json = result.toString();
-            }
-            else{
-                //not successful
-            }
 
+                json = result.toString();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

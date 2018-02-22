@@ -24,11 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
-/**
- * Created by Marcus on 2018-02-07.
- */
-
 public class SearchActivity extends AppCompatActivity implements GetDataInterface {
     Spinner spinner;
     private Button searchButton;
@@ -55,24 +50,21 @@ public class SearchActivity extends AppCompatActivity implements GetDataInterfac
     public void fetchDataCallback(JSONArray result) {
         ArrayList<Match> matchList = new ArrayList<>();
 
-        for (int i = 0; i < 1/*result.length()*/; i++) {
+        for (int i = 0; i < result.length(); i++) {
             try{
             JSONObject activity = result.getJSONObject(i);
             String type = activity.getString("type");
             String date = activity.getString("date");
             String location = activity.getString("location");
-            int max_part = activity.getInt("max_participants");
-            int min_part = activity.getInt("min_participants");
-            Match a = new Match(type, date, location, min_part, max_part,"hej@test.se", 0);
+            String max_part = activity.getString("max_participants");
+            String min_part = activity.getString("min_participants");
+            String users_email = activity.getString("users_email");
+            Match a = new Match(type, date, location, min_part, max_part, users_email, 0);
             matchList.add(a);
             }
             catch(JSONException e){
             }
-
-
         }
-
-
 
             Intent intent = new Intent(this, MatchActivity.class);
             intent.putParcelableArrayListExtra("matchList", matchList);

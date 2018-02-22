@@ -11,13 +11,13 @@ public class Match implements Parcelable {
     private String type;
     private String date;
     private String location;
-    private int min_participants;
-    private int max_participants;
+    private String min_participants;
+    private String max_participants;
     private String email;
     private int thumbnail;
 
 
-    public Match(String Type, String Date, String Location, int Min_participants, int Max_participants, String Email, int Thumbnail) {
+    public Match(String Type, String Date, String Location, String Min_participants, String Max_participants, String Email, int Thumbnail) {
         this.type = Type;
         this.date = Date;
         this.location = Location;
@@ -31,8 +31,8 @@ public class Match implements Parcelable {
         this.type = parcel.readString();
         this.date = parcel.readString();
         this.location = parcel.readString();
-        this.max_participants = parcel.readInt();
-        this.min_participants = parcel.readInt();
+        this.max_participants = parcel.readString();
+        this.min_participants = parcel.readString();
         this.email = parcel.readString();
         this.thumbnail = parcel.readInt();
     }
@@ -46,8 +46,8 @@ public class Match implements Parcelable {
         dest.writeString(type);
         dest.writeString(date);
         dest.writeString(location);
-        dest.writeInt(max_participants);
-        dest.writeInt(min_participants);
+        dest.writeString(max_participants);
+        dest.writeString(min_participants);
         dest.writeString(email);
         dest.writeInt(thumbnail);
     }
@@ -82,21 +82,21 @@ public class Match implements Parcelable {
         this.email = email;
     }
 
-    public int getMax_participants() {
+    public String getMax_participants() {
 
         return max_participants;
     }
 
-    public void setMax_participants(int max_participants) {
+    public void setMax_participants(String max_participants) {
         this.max_participants = max_participants;
     }
 
-    public int getMin_participants() {
+    public String getMin_participants() {
 
         return min_participants;
     }
 
-    public void setMin_participants(int min_participants) {
+    public void setMin_participants(String min_participants) {
         this.min_participants = min_participants;
     }
 

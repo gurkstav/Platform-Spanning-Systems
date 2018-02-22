@@ -10,10 +10,6 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Marcus on 2018-02-08.
- */
-
 public class MatchActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private searchMatchAdapter adapter;
@@ -25,8 +21,8 @@ public class MatchActivity extends AppCompatActivity {
 
         ArrayList<Match> matchList = getIntent().getParcelableArrayListExtra("matchList");
 
-        if(matchList.isEmpty()){
-            Match a = new Match(null, null, null, 0, 0, null, R.drawable.nomatch);
+        if(matchList.isEmpty() || matchList == null){
+            Match a = new Match(null, null, null, null, null, null, R.drawable.nomatch);
             matchList.add(a);
             recyclerView = findViewById(R.id.searchResultsView);
             adapter = new searchMatchAdapter(this, matchList);
