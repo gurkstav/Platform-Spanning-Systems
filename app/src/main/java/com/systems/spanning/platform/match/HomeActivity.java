@@ -47,7 +47,8 @@ public class HomeActivity extends AppCompatActivity implements GetDataInterface 
                 String location = activity.getString("location");
                 String max_part = activity.getString("max_participants");
                 String min_part = activity.getString("min_participants");
-                Match a = new Match(type, date, location, min_part, max_part,null, 0);
+                String users_email = activity.getString("users_email");
+                Match a = new Match(type, date, location, min_part, max_part, users_email, 0);
                 matchList.add(a);
             }
             catch(JSONException e){
@@ -55,7 +56,7 @@ public class HomeActivity extends AppCompatActivity implements GetDataInterface 
         }
 
         Intent intent = new Intent(this, OwnActivities.class);
-        intent.putParcelableArrayListExtra("matchList", matchList);
+        intent.putParcelableArrayListExtra("matchListOwn", matchList);
         startActivity(intent);
     }
 }
