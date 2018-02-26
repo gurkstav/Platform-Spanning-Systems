@@ -45,7 +45,6 @@ public class searchMatchAdapter extends RecyclerView.Adapter<searchMatchAdapter.
             max_part = view.findViewById(R.id.activityMaxPart);
             min_part = view.findViewById(R.id.activityMinPart);
             email = view.findViewById(R.id.activityEmail);
-
         }
     }
 

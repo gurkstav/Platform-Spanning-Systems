@@ -3,7 +3,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/background"
     android:clickable="true"
     android:focusableInTouchMode="true"
     android:focusable="true">
@@ -40,11 +40,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp">
 
-
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/textInputActivityType"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:hint="@string/chooseActivity"
                 android:inputType="text"
                 android:maxLines="1" />
@@ -53,11 +53,12 @@
 
 
         <android.support.v7.widget.AppCompatButton
+            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:id="@+id/SearchButton"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"
-            android:backgroundTint="@color/colorPrimary"
             android:text="@string/search_activities"
             android:textAllCaps="false"
             android:onClick="SearchClick"/>

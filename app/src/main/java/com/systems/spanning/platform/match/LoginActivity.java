@@ -16,6 +16,7 @@ public class LoginActivity extends AppCompatActivity implements GetDataInterface
 
     private EditText email;
     private EditText password;
+    private TextView wrongPassword;
 
 
 
@@ -27,6 +28,7 @@ public class LoginActivity extends AppCompatActivity implements GetDataInterface
 
         email = findViewById(R.id.enterEmail);
         password = findViewById(R.id.enterPassword);
+        wrongPassword = findViewById(R.id.wrongPasswordText);
 
     }
 
@@ -37,8 +39,8 @@ public class LoginActivity extends AppCompatActivity implements GetDataInterface
     }
 
     public void LoginClick(View view){
+        wrongPassword.setVisibility(View.INVISIBLE);
         new GetData("http://192.168.1.2:1000/activities", this).execute();
-
     }
 
     public void ForgotPasswordClick(View view){
@@ -49,6 +51,7 @@ public class LoginActivity extends AppCompatActivity implements GetDataInterface
 
     @Override
     public void fetchDataCallback(JSONArray result) {
+        // wrongPassword.setVisibility(View.VISIBLE);
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }

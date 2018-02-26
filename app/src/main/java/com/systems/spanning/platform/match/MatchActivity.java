@@ -33,6 +33,7 @@ public class MatchActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
+
     public void setRecyclerView(){
         ArrayList<Match> matchList = getIntent().getParcelableArrayListExtra("matchList");
 

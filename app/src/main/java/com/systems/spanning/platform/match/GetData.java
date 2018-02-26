@@ -13,10 +13,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by Marcus on 2018-02-16.
- */
-
 public class GetData extends AsyncTask<Void, Void, JSONArray>{
     private HttpURLConnection urlConnection;
     private String url;
