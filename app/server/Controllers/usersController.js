@@ -1,8 +1,8 @@
 var mongoose = require('mongoose'),
-    Users = mongoose.model('users');
+    users = mongoose.model('users');
 
 exports.list_all_users = function(req, res){
-    Users.find({}, function(err, users){
+    users.find({}, function(err, users){
         if (err)
             res.send(err);
         res.json(users);
@@ -10,7 +10,7 @@ exports.list_all_users = function(req, res){
 };
 
 exports.create_a_user = function(req, res){
-    var new_users = new Users(req.body);
+    var new_users = new users(req.body);
     new_users.save(function(err, users){
         if (err)
             res.send(err)
@@ -19,7 +19,7 @@ exports.create_a_user = function(req, res){
 };
 
 exports.read_a_user = function(req, res){
-    Users.findById(req.params.userId, function(err, users){
+    users.findById(req.params.userId, function(err, users){
         if (err)
             res.send(err);
         res.json(users);
@@ -27,7 +27,7 @@ exports.read_a_user = function(req, res){
 };
 
 exports.update_a_user = function(req, res){
-    Users.findOneAndUpdate({_id: req.params.userId}, req.body, {new: true}, function(err, users){
+    users.findOneAndUpdate({_id: req.params.userId}, req.body, {new: true}, function(err, users){
         if (err)
             res.send(err);
         res.json(users);
@@ -36,7 +36,7 @@ exports.update_a_user = function(req, res){
 
 exports.delete_a_user = function(req, res){
 
-    Users.remove({
+    users.remove({
         _id: req.params.userId
     }, function(err, users) {
         if (err)

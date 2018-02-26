@@ -1,16 +1,46 @@
 'use strict';
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var bcrypt = require('bcrypt');
+
 
 //Schema:
 var usersSchema = new Schema({
     full_name: {type: String, required: true},
     ssn: {type: String, required: true},
-    email: {type: String, required: true},
-    pwd: {type: String, required: true}
+    email: {type: String, unique: true, required: true},
+    password: {type: String, required: true}
     }
 
 );
+usersSchema.pre('save', function (next) {
+    var users = this;
+    if (this.isModified('password') || this.isNew) {
+        bcrypt.genSalt(10, function (err, salt) {
+            if (err) {
+                return next(err);
+            }
+            bcrypt.hash(users.password, salt, function (err, hash) {
+                if (err) {
+                    return next(err);
+                }
+                users.password = hash;
+                next();
+            });
+        });
+    } else {
+        return next();
+    }
+});
+
+usersSchema.methods.comparePassword = function (pwd, res) {
+    bcrypt.compare(pwd, this.password, function (err, isMatch) {
+        if (err) {
+             res.send(err);
+        }
+        res.json(null, isMatch);
+    });
+};
 
 //return models:
 module.exports = mongoose.model('users', usersSchema);
