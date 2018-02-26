@@ -23,3 +23,8 @@ routes(app);
 //start server:
 app.listen(port);
 console.log('Server is running on port:' + port);
+
+//404-message when using wrong Url
+app.use(function(req, res) {
+    res.status(404).send({url: req.originalUrl + ' not found'})
+});
