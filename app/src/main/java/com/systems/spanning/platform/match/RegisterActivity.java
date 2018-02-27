@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RegisterActivity extends AppCompatActivity implements PostDataInterface{
+public class RegisterActivity extends AppCompatActivity implements PostDataInterface {
     private EditText name;
     private EditText email;
     private EditText password;
@@ -47,20 +47,17 @@ public class RegisterActivity extends AppCompatActivity implements PostDataInter
 
     }
 
-    public void RegisterClick(View view){
+    public void RegisterClick(View view) {
         Name = name.getText().toString();
         SSN = ssn.getText().toString();
         Email = email.getText().toString();
         Password = password.getText().toString();
         PasswordRepeat = passwordRepeat.getText().toString();
 
-        if(Name.isEmpty() || SSN.isEmpty() || Email.isEmpty() || Password.isEmpty()){
+        if (Name.isEmpty() || SSN.isEmpty() || Email.isEmpty() || Password.isEmpty()) {
             Toast.makeText(this, "Please fill in all information", Toast.LENGTH_SHORT).show();
         }
-        if(!Password.equals(PasswordRepeat)){
-            Log.println(Log.INFO,"E", Password);
-
-            Log.println(Log.INFO,"E", PasswordRepeat);
+        else if (!Password.equals(PasswordRepeat)) {
             Toast.makeText(this, "Passwords must match", Toast.LENGTH_SHORT).show();
         }
         else {
@@ -68,16 +65,26 @@ public class RegisterActivity extends AppCompatActivity implements PostDataInter
             postData.put("full_name", Name);
             postData.put("ssn", SSN);
             postData.put("email", Email);
-            postData.put("pwd", Password);
+            postData.put("password", Password);
 
-            new PostData("http://192.168.1.2:1000/users", postData, this).execute();
+            new PostData("http://192.168.1.2:1000/register", postData, this).execute();
         }
     }
 
     @Override
-    public void fetchDataCallback(String result) {
-        Toast.makeText(this, "You are now registered!", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+    public void fetchDataCallback(JSONObject result) {
+        try {
+            Boolean success = result.getBoolean("success");
+            if(success) {
+                Toast.makeText(this, "You are now registered!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(this, result.getString("msg"), Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException je) {
+
+        }
     }
 }

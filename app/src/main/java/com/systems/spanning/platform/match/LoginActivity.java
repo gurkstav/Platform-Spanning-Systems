@@ -3,20 +3,27 @@ package com.systems.spanning.platform.match;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-public class LoginActivity extends AppCompatActivity implements GetDataInterface{
+import java.util.HashMap;
+
+public class LoginActivity extends AppCompatActivity implements PostDataInterface{
 
     private EditText email;
     private EditText password;
     private TextView wrongPassword;
+    private String Email;
+    private String Password;
 
 
 
@@ -40,7 +47,20 @@ public class LoginActivity extends AppCompatActivity implements GetDataInterface
 
     public void LoginClick(View view){
         wrongPassword.setVisibility(View.INVISIBLE);
-        new GetData("http://192.168.1.2:1000/activities", this).execute();
+
+        Email = email.getText().toString();
+        Password = password.getText().toString();
+
+        if (Email.isEmpty() || Password.isEmpty()) {
+            Toast.makeText(this, "Please enter Email and Password", Toast.LENGTH_SHORT).show();
+        }
+         else {
+            HashMap<String, String> postData = new HashMap<>();
+            postData.put("email", Email);
+            postData.put("password", Password);
+
+            new PostData("http://192.168.1.2:1000/login", postData, this).execute();
+        }
     }
 
     public void ForgotPasswordClick(View view){
@@ -50,9 +70,18 @@ public class LoginActivity extends AppCompatActivity implements GetDataInterface
     }
 
     @Override
-    public void fetchDataCallback(JSONArray result) {
-        // wrongPassword.setVisibility(View.VISIBLE);
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
+    public void fetchDataCallback(JSONObject result) {
+        try{
+            if(result.getBoolean("success") == true){
+                Intent intent = new Intent(this, HomeActivity.class);
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(this, result.getString("msg"), Toast.LENGTH_SHORT).show();
+            }
+        }
+        catch(JSONException jse){
+
+        }
     }
 }

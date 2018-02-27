@@ -1,7 +1,8 @@
 'use strict';
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
+var Schema = mongoose.Schema;
+
 
 
 //Schema:
@@ -36,9 +37,9 @@ usersSchema.pre('save', function (next) {
 usersSchema.methods.comparePassword = function (pwd, res) {
     bcrypt.compare(pwd, this.password, function (err, isMatch) {
         if (err) {
-             res.send(err);
+             return res(err);
         }
-        res.json(null, isMatch);
+        res(null, isMatch);
     });
 };
 

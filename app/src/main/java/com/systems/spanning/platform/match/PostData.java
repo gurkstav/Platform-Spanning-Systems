@@ -21,11 +21,11 @@ import java.util.HashMap;
  * Created by Marcus on 2018-02-22.
  */
 
-public class PostData extends AsyncTask<Void, Void, String> {
+public class PostData extends AsyncTask<Void, Void, JSONObject> {
     private HttpURLConnection urlConnection;
     private String url;
     private PostDataInterface callbackPost;
-    private String json;
+    private JSONObject json;
     private JSONObject postData;
 
     public PostData(String url, HashMap<String, String> postData, PostDataInterface callbackPost) {
@@ -37,7 +37,7 @@ public class PostData extends AsyncTask<Void, Void, String> {
     }
 
     @Override
-    protected String doInBackground(Void... params) {
+    protected JSONObject doInBackground(Void... params) {
         StringBuilder result = new StringBuilder();
         try {
             URL url = new URL(this.url);
@@ -64,7 +64,8 @@ public class PostData extends AsyncTask<Void, Void, String> {
                     result.append(line);
                 }
 
-                json = result.toString();
+                json = new JSONObject(result.toString());
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -74,7 +75,7 @@ public class PostData extends AsyncTask<Void, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(String jsonResponse) {
+    protected void onPostExecute(JSONObject jsonResponse) {
         super.onPostExecute(jsonResponse);
         this.callbackPost.fetchDataCallback(jsonResponse);
     }

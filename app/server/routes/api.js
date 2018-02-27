@@ -15,12 +15,17 @@ module.exports = function(app){
     // users Routes
     app.route('/users')
         .get(users.list_all_users)
-        .post(users.create_a_user);
 
     app.route('/users/:userId')
         .get(users.read_a_user)
         .put(users.update_a_user)
         .delete(users.delete_a_user);
+
+    app.route('/register')
+        .post(users.register_user);
+
+    app.route('/login')
+        .post(users.login_user);
 
 
 };

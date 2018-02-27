@@ -8,5 +8,5 @@ import org.json.JSONObject;
  */
 
 public interface PostDataInterface {
-    void fetchDataCallback (String result);
+    void fetchDataCallback (JSONObject result);
 }
