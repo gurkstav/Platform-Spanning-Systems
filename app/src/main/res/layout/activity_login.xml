@@ -23,8 +23,8 @@
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="300dp"
             android:layout_height="150dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
             android:src="@drawable/logo_banner" />
 
         <android.support.design.widget.TextInputLayout
@@ -76,7 +76,7 @@
             android:layout_width="305dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:layout_marginStart="35dp"
+            android:layout_marginStart="32dp"
             android:text="@string/button_login"
             android:onClick="LoginClick"/>
 
@@ -85,7 +85,7 @@
             android:id="@+id/appCompatButtonRegister"
             android:layout_width="305dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="10dp"
             android:text="@string/button_new_user"
             android:onClick="RegisterClick" />

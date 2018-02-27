@@ -30,11 +30,6 @@ import java.util.Calendar;
 public class CreateActivity extends AppCompatActivity implements
         DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
 
-    public void newSearchClick(View view){
-        Intent intent = new Intent(this, SearchActivity.class);
-        startActivity(intent);
-    }
-
     Button button_pick_date_time;
     TextView pick_date_time_results;
     int day, month, year, hour, minute;

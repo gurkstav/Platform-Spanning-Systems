@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/bg"
+    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,42 +21,44 @@
         android:layout_gravity="end"
         android:background="@drawable/home_button"
         android:onClick="homeClick"
-        tools:layout_editor_absoluteX="333dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"/>
 
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/select_activity"
             android:layout_width="250dp"
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="40dp"
             android:entries="@array/search_activity_type"/>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayoutActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp">
+            android:layout_marginStart="65dp">
 
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/textInputActivityType"
-                android:layout_width="230dp"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/activity_type"
+                android:hint="@string/chooseActivity"
                 android:inputType="text"
+                android:layout_marginStart="5dp"
                 android:maxLines="1" />
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
+            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:id="@+id/button_pick_date_time"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/button_pick_date_time"
             android:textAllCaps="false" />
-
         <TextView
             android:id="@+id/pick_date_time_results"
             android:layout_width="250dp"
@@ -65,9 +67,11 @@
             android:text="" />
 
         <android.support.v7.widget.AppCompatButton
+            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:id="@+id/pick_location_button"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/button_pick_location"
             android:textAllCaps="false" />
@@ -115,11 +119,14 @@
         </LinearLayout>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/create_activity"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
+            android:id="@+id/button_create_activity"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/button_create_activity"
+            android:onClick="createActivity"
             android:textAllCaps="false" />
 
 
