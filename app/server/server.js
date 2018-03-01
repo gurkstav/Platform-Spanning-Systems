@@ -1,7 +1,7 @@
 //dependencies
 var express = require('express'),
     app = express(),
-    port = process.env.PORT || 1000,
+    port = process.env.PORT || 8000,
     mongoose = require('mongoose'),
     activities = require('./models/activities'),
     users = require('./models/users'),
