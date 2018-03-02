@@ -31,6 +31,8 @@ public class GetData extends AsyncTask<Void, Void, JSONArray>{
         try {
             URL url = new URL(this.url);
             urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setReadTimeout(5000 /* milliseconds */ );
+            urlConnection.setConnectTimeout(5000 /* milliseconds */ );
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
             String line;

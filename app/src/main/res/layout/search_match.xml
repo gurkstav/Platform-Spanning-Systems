@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
+    android:layout_width="250dp"
     android:layout_height="115dp"
     android:layout_gravity="center_horizontal"
     android:layout_marginTop="10dp">
@@ -9,10 +9,8 @@
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="30dp"
-        android:elevation="10dp"
         android:clickable="true"
-        android:onClick="enlargeCardClick">
+        android:focusable="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -22,37 +20,49 @@
                 android:id="@+id/thumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="true"
-                android:focusable="auto"
                 android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/cardBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.75"
+                android:scaleType="fitXY" />
+
             <TextView
                 android:id ="@+id/activityType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"/>
             <TextView
                 android:id ="@+id/activityDate"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_below="@id/activityType"/>
             <TextView
                 android:id ="@+id/activityLocation"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_below="@id/activityDate"/>
             <TextView
                 android:id ="@+id/activityMinPart"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_below="@id/activityLocation"/>
             <TextView
                 android:id ="@+id/activityMaxPart"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_below="@id/activityMinPart"/>
             <TextView
                 android:id ="@+id/activityEmail"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_below="@id/activityMaxPart"/>
         </RelativeLayout>
 

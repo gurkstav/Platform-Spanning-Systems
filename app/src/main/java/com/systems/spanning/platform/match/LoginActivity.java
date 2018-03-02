@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements PostDataInterfac
             postData.put("email", Email);
             postData.put("password", Password);
 
-            new PostData("http://192.168.1.2:1000/login", postData, this).execute();
+            new PostData("http://192.168.1.2:8000/login", postData, this).execute();
         }
     }
 
@@ -72,12 +72,16 @@ public class LoginActivity extends AppCompatActivity implements PostDataInterfac
     @Override
     public void fetchDataCallback(JSONObject result) {
         try{
-            if(result.getBoolean("success") == true){
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
+            if(result == null){
+                Toast.makeText(this, "Could not connect with server, please try again later", Toast.LENGTH_SHORT).show();
             }
-            else{
-                Toast.makeText(this, result.getString("msg"), Toast.LENGTH_SHORT).show();
+            else {
+                if (result.getBoolean("success")) {
+                    Intent intent = new Intent(this, HomeActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, result.getString("msg"), Toast.LENGTH_SHORT).show();
+                }
             }
         }
         catch(JSONException jse){

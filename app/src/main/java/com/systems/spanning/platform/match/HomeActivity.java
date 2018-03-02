@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,31 +31,19 @@ public class HomeActivity extends AppCompatActivity implements GetDataInterface 
     }
 
     public void newGoToShowOwnActivity(View view){
-        new GetData("http://192.168.1.2:1000/activities",this).execute();
+        new GetData("http://192.168.1.2:8000/activities",this).execute();
     }
 
     @Override
     public void fetchDataCallback(JSONArray result) {
-        ArrayList<Match> matchList = new ArrayList<>();
+        if (result == null) {
+            Toast.makeText(this, "Could not connect with server, please try again later", Toast.LENGTH_SHORT).show();
+        } else {
+            ArrayList<Match> matchList = fetchCardParams.fetchParams(result);
 
-        for (int i = 0; i < result.length(); i++) {
-            try{
-                JSONObject activity = result.getJSONObject(i);
-                String type = activity.getString("type");
-                String date = activity.getString("date");
-                String location = activity.getString("location");
-                String max_part = activity.getString("max_participants");
-                String min_part = activity.getString("min_participants");
-                String users_email = activity.getString("users_email");
-                Match a = new Match(type, date, location, min_part, max_part, users_email, 0);
-                matchList.add(a);
-            }
-            catch(JSONException e){
-            }
+            Intent intent = new Intent(this, OwnActivities.class);
+            intent.putParcelableArrayListExtra("matchListOwn", matchList);
+            startActivity(intent);
         }
-
-        Intent intent = new Intent(this, OwnActivities.class);
-        intent.putParcelableArrayListExtra("matchListOwn", matchList);
-        startActivity(intent);
     }
 }

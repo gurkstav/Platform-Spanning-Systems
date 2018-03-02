@@ -67,24 +67,27 @@ public class RegisterActivity extends AppCompatActivity implements PostDataInter
             postData.put("email", Email);
             postData.put("password", Password);
 
-            new PostData("http://192.168.1.2:1000/register", postData, this).execute();
+            new PostData("http://192.168.1.2:8000/register", postData, this).execute();
         }
     }
 
     @Override
     public void fetchDataCallback(JSONObject result) {
-        try {
-            Boolean success = result.getBoolean("success");
-            if(success) {
-                Toast.makeText(this, "You are now registered!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
-            }
-            else{
-                Toast.makeText(this, result.getString("msg"), Toast.LENGTH_SHORT).show();
-            }
-        } catch (JSONException je) {
+        if (result == null) {
+            Toast.makeText(this, "Could not connect with server, please try again later", Toast.LENGTH_SHORT).show();
+        } else {
+            try {
+                Boolean success = result.getBoolean("success");
+                if (success) {
+                    Toast.makeText(this, "You are now registered!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, result.getString("msg"), Toast.LENGTH_SHORT).show();
+                }
+            } catch (JSONException je) {
 
+            }
         }
     }
 }

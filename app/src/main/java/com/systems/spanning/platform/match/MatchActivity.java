@@ -42,24 +42,12 @@ public class MatchActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SearchActivity.class);
             startActivity(intent);
         }
-        else if(matchList.isEmpty()){
-            Match a = new Match(null, null, null, null, null, null, R.drawable.nomatch);
-            matchList.add(a);
+        else{
             recyclerView = findViewById(R.id.searchResultsView);
             adapter = new searchMatchAdapter(this, matchList);
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(mLayoutManager);
-            recyclerView.addItemDecoration(new ItemDecorator(2, 30, true));
-            recyclerView.setAdapter(adapter);
-
-
-        }
-        else {
-            recyclerView = findViewById(R.id.searchResultsView);
-            adapter = new searchMatchAdapter(this, matchList);
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-            recyclerView.setLayoutManager(mLayoutManager);
-            recyclerView.addItemDecoration(new ItemDecorator(2, 30, true));
+            // recyclerView.addItemDecoration(new ItemDecorator(2, 30, true));
             recyclerView.setAdapter(adapter);
         }
     }

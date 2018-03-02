@@ -4,17 +4,12 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.systems.spanning.platform.match.Match;
 
 import java.util.List;
 
@@ -34,11 +29,13 @@ public class searchMatchAdapter extends RecyclerView.Adapter<searchMatchAdapter.
         private TextView max_part;
         private TextView min_part;
         private ImageView thumbnail;
+        private ImageView cardBackground;
         private TextView email;
 
         private MyViewHolder(View view) {
             super(view);
             thumbnail = view.findViewById(R.id.thumbnail);
+            cardBackground = view.findViewById(R.id.cardBackground);
             type = view.findViewById(R.id.activityType);
             date = view.findViewById(R.id.activityDate);
             location = view.findViewById(R.id.activityLocation);
@@ -73,17 +70,51 @@ public class searchMatchAdapter extends RecyclerView.Adapter<searchMatchAdapter.
         String min = String.format(res.getString(R.string.min_participants), String.valueOf(match.getMin_participants()));
         String email = String.format(res.getString(R.string.userEmail), match.getEmail());
 
-        if(match.getThumbnail() == 0) {
+        if(match.getThumbnail() == 1) {
             holder.type.setText(type);
             holder.date.setText(date);
             holder.location.setText(location);
             holder.max_part.setText(max);
             holder.min_part.setText(min);
             holder.email.setText(email);
-        }
 
+            switch(match.getType()){
+                case "Sport":
+                    Glide.with(mContext).load(R.drawable.sport_card).into(holder.thumbnail);
+                    Glide.with(mContext).load(R.drawable.card_background).into(holder.cardBackground);
+                    break;
+                case "Events":
+                    Glide.with(mContext).load(R.drawable.event_card).into(holder.thumbnail);
+                    Glide.with(mContext).load(R.drawable.card_background).into(holder.cardBackground);
+                    break;
+                case "Music":
+                    Glide.with(mContext).load(R.drawable.music_card).into(holder.thumbnail);
+                    Glide.with(mContext).load(R.drawable.card_background).into(holder.cardBackground);
+                    break;
+                case "Games":
+                    Glide.with(mContext).load(R.drawable.games_card).into(holder.thumbnail);
+                    Glide.with(mContext).load(R.drawable.card_background).into(holder.cardBackground);
+                    break;
+                case "Others":
+                    Glide.with(mContext).load(R.drawable.other_card).into(holder.thumbnail);
+                    Glide.with(mContext).load(R.drawable.light_grey_background).into(holder.cardBackground);
+                    break;
+                case "Outdoor":
+                    Glide.with(mContext).load(R.drawable.outdoor_card).into(holder.thumbnail);
+                    Glide.with(mContext).load(R.drawable.card_background).into(holder.cardBackground);
+                    break;
+                case "Shopping":
+                    Glide.with(mContext).load(R.drawable.shopping_card).into(holder.thumbnail);
+                    Glide.with(mContext).load(R.drawable.card_background).into(holder.cardBackground);
+                    break;
+                default:
+                    Glide.with(mContext).load(R.drawable.other_card).into(holder.thumbnail);
+                    Glide.with(mContext).load(R.drawable.light_grey_background).into(holder.cardBackground);
+                    break;
+            }
+        }
         else{
-            Glide.with(mContext).load(match.getThumbnail()).into(holder.thumbnail);
+            Glide.with(mContext).load(R.drawable.nomatch).into(holder.thumbnail);
         }
     }
 
