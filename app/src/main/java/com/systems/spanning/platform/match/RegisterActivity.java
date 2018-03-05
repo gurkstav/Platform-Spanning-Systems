@@ -67,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements PostDataInter
             postData.put("email", Email);
             postData.put("password", Password);
 
-            new PostData("http://192.168.1.2:8000/register", postData, this).execute();
+            new PostData("http://10.0.2.2:8000/register", postData, this).execute();
         }
     }
 

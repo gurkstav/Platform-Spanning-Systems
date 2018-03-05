@@ -88,34 +88,34 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
             <TextView
-                android:id="@+id/tv"
+                android:id="@+id/textview_min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Select minimum \namount of \nparticipants: " />
 
             <NumberPicker
-                android:id="@+id/np"
+                android:id="@+id/numberpicker_min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleX="0.50"
                 android:scaleY="0.50"
-                android:layout_below="@id/tv" />
+                android:layout_below="@id/textview_min" />
 
             <TextView
-                android:id="@+id/tv2"
+                android:id="@+id/textview_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Select maximum \namount of \nparticipants: " />
 
             <NumberPicker
-                android:id="@+id/np2"
+                android:id="@+id/numberpicker_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleX="0.50"
                 android:scaleY="0.50"
-                android:layout_below="@id/tv" />
+                android:layout_below="@id/textview_max" />
         </LinearLayout>
 
         <android.support.v7.widget.AppCompatButton
