@@ -67,6 +67,7 @@ exports.login_user = function(req, res) {
       // check if password matches
       users.comparePassword(req.body.password, function (err, isMatch) {
         if (isMatch && !err) {
+            req.session.email = req.body.email;
           res.json({success: true});
         } else {
           res.send({success: false, msg: 'Login failed. Wrong password.'});
