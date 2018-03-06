@@ -31,7 +31,7 @@ public class HomeActivity extends AppCompatActivity implements GetDataInterface 
     }
 
     public void newGoToShowOwnActivity(View view){
-        new GetData("http://192.168.1.2:8000/activities",this).execute();
+        new GetData("http://10.0.2.2:8000/activities",this).execute();
     }
 
     @Override

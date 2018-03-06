@@ -44,34 +44,34 @@ public class CreateActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_activity);
 
-        final TextView tv = findViewById(R.id.tv);
-        NumberPicker np = findViewById(R.id.np);
+        final TextView textview_min = findViewById(R.id.textview_min);
+        NumberPicker numberpicker_min = findViewById(R.id.numberpicker_min);
 
-        final TextView tv2 = findViewById(R.id.tv2);
-        NumberPicker np2 = findViewById(R.id.np2);
+        final TextView textview_max = findViewById(R.id.textview_max);
+        NumberPicker numberpicker_max = findViewById(R.id.numberpicker_max);
 
-        tv.setTextColor(Color.parseColor("#000000"));
-        tv2.setTextColor(Color.parseColor("#000000"));
+        textview_min.setTextColor(Color.parseColor("#000000"));
+        textview_max.setTextColor(Color.parseColor("#000000"));
 
-        np.setMinValue(0);
-        np.setMaxValue(100);
-        np.setWrapSelectorWheel(true);
+        numberpicker_min.setMinValue(0);
+        numberpicker_min.setMaxValue(100);
+        numberpicker_min.setWrapSelectorWheel(true);
 
-        np2.setMinValue(0);
-        np2.setMaxValue(100);
-        np2.setWrapSelectorWheel(true);
+        numberpicker_max.setMinValue(0);
+        numberpicker_max.setMaxValue(100);
+        numberpicker_max.setWrapSelectorWheel(true);
 
-        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        numberpicker_min.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal){
-                tv.setText(newVal);
+                textview_min.setText("Select minimum \namount of \nparticipants: " + newVal);
             }
         });
 
-        np2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        numberpicker_max.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal2, int newVal2){
-                tv2.setText(newVal2);
+                textview_max.setText("Select maximum \namount of \nparticipants: " + newVal2);
             }
         });
 
