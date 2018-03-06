@@ -11,7 +11,7 @@ exports.list_all_activities = function(req, res){
 
 exports.create_a_activity = function(req, res) {
     if (!req.session.email) {
-        res.json({success: false}) //lägg till message if fail
+        res.json({success: false, message: 'Not logged in, no activity created'})
     } else {
         var new_activity = new Activity({
             title: req.body.title,
@@ -27,7 +27,7 @@ exports.create_a_activity = function(req, res) {
         new_activity.save(function (err, activity) {
             if (err)
                 res.send(err)
-            res.json(activity);
+            res.json(activity, {message: 'Activity successfully created'});
         });
     }
 };
