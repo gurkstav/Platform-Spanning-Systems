@@ -3,17 +3,23 @@ var express = require('express'),
     app = express(),
     port = process.env.PORT || 8000,
     mongoose = require('mongoose'),
+    morgan = require('morgan'),
     activities = require('./models/activities'),
     users = require('./models/users'),
+    config = require('./config'),
+    jwt = require('jsonwebtoken'),
     bodyParser = require('body-parser');
 
 //connect to mongoDB:
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://Matilda:playdate123@ds123658.mlab.com:23658/playdate');
+mongoose.connect(config.database);
+app.set('superSecret', config.secret);
 
 //express:
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+app.use(morgan('dev'));
 
 //routes:
 var routes = require('./routes/api');

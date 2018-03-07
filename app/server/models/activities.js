@@ -12,7 +12,7 @@ var activitiesSchema = new Schema({
     location: {type: String, required: true},
     min_participants: {type: String, required: true},
     max_participants: {type: String, required: true},
-    email: {type: String, required: true} //lägg in session här för den som registrerar aktiviteten
+    email: {type: String, required: true}
     }
 
 );

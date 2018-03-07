@@ -15,6 +15,9 @@ module.exports = function(app){
     app.route('/create')
         .post(activities.create_a_activity);
 
+    app.route('/search')
+        .get(activities.list_all_activities);
+
     // users Routes
     app.route('/users')
         .get(users.list_all_users);
