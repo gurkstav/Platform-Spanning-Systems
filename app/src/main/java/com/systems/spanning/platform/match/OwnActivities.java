@@ -48,6 +48,29 @@ public class OwnActivities extends AppCompatActivity{
             recyclerView.setLayoutManager(mLayoutManager);
             // recyclerView.addItemDecoration(new ItemDecorator(2, 30, true));
             recyclerView.setAdapter(adapter);
+            recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    Match match = adapter.getItem(position);
+
+                    android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    android.support.v4.app.Fragment prev = getSupportFragmentManager().findFragmentByTag("cardDialog");
+                    if (prev != null) {
+                        ft.remove(prev);
+                    }
+                    ft.addToBackStack(null);
+
+                    CardFragment cardFragment = CardFragment.newInstance(match);
+                    cardFragment.show(ft,"cardDialog");
+
+
+                }
+
+                @Override
+                public void onItemLongClick(View view, int position) {
+                    // ...
+                }
+            }));
         }
     }
 }

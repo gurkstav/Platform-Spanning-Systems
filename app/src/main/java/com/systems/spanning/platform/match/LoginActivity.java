@@ -59,8 +59,9 @@ public class LoginActivity extends AppCompatActivity implements PostDataInterfac
             postData.put("email", Email);
             postData.put("password", Password);
 
-            new PostData("http://192.168.1.2:8000/login", postData, this).execute();
+            new PostData("http://10.0.2.2:8000/login", postData, this).execute();
             //10.0.2.2
+            //192.168.1.2
         }
     }
 
