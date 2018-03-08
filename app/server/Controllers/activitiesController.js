@@ -9,8 +9,26 @@ exports.list_all_activities = function(req, res){
     });
 };
 
+exports.search_activities = function(req, res){
+    Activity.find({type: req.body.type}, function(err, activity){
+        if (err)
+            res.send(err);
+        if (!type) {
+            res.send({success: false, message: 'Input search criteria'});
+        } else {
+            activity.matchSearch(req.body.type, function(err, isMatch){
+                if (isMatch && !err) {
+                    res.json({success: true});
+                } else {
+                    res.send({success: false, message: 'No matching acitvities'});
+                }
+            });
+        }
+    });
+};
+
 exports.create_a_activity = function(req, res) {
-    if (!req.session.email) {
+    if (err) {
         res.json({success: false, message: 'Not logged in, no activity created'})
     } else {
         var new_activity = new Activity({
@@ -22,7 +40,7 @@ exports.create_a_activity = function(req, res) {
             location: req.body.location,
             min_participants: req.body.min_participants,
             max_participants: req.body.max_participants,
-            email: req.session.email
+            email: req.body.email
         });
         new_activity.save(function (err, activity) {
             if (err)

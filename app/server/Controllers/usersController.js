@@ -1,5 +1,8 @@
 var mongoose = require('mongoose'),
-    users = mongoose.model('users');
+    express = require('express'),
+    users = mongoose.model('users'),
+    app = express(),
+    jwt = require('jsonwebtoken');
 
 exports.list_all_users = function(req, res){
     users.find({}, function(err, users){
@@ -7,6 +10,20 @@ exports.list_all_users = function(req, res){
             res.send(err);
         res.json(users);
     });
+};
+
+exports.find_user = function(req, res){
+   users.findOne({
+       email: req.body.email
+   }, function(err, users) {
+       if (err)
+           res.send(err);
+       if (!users) {
+           res.json({success: false, message: 'Authentication failed. User not found'});
+       } else if (user) {
+           res.json({success: true, message: 'User found'});
+       }
+   });
 };
 
 exports.read_a_user = function(req, res){
@@ -59,20 +76,26 @@ exports.login_user = function(req, res) {
   users.findOne({
     email: req.body.email
   }, function(err, users) {
-    if (err) throw err;
+      if (err) throw err;
 
-    if (!users) {
-      res.send({success: false, msg: 'Login failed. Email not found.'});
-    } else {
-      // check if password matches
-      users.comparePassword(req.body.password, function (err, isMatch) {
-        if (isMatch && !err) {
-            req.session.email = req.body.email;
-          res.json({success: true});
-        } else {
-          res.send({success: false, msg: 'Login failed. Wrong password.'});
-        }
-      });
-    }
-  });
+      if (!users) {
+          res.json({success: false, message: 'Login failed. Email not found.'});
+      } else if (users) {
+          // check if password matches
+          users.comparePassword(req.body.password, function (isMatch, err) {
+              if (!isMatch) {
+                  res.json({success: false, message: 'Login failed. Wrong password.'});
+              } else {
+                  const payload = {
+                      email: users.email
+                  };
+                  var token = jwt.sign(payload, 'private.key', app.get('superSecret'), {
+                      expiresInMinutes: 1440 // 24 h
+                  });
+                  res.json({success: true, message: 'Login complete', token: token});
+              }
+          });
+      }
+
+   });
 };
