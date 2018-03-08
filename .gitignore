@@ -8,3 +8,4 @@
 /captures
 .externalNativeBuild
 /.idea
+/app/server/node_modules
