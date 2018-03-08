@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="260dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="120dp"
+    android:background="@drawable/card_background">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:id="@+id/background_image_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/activityType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Type of Activity: Fotboll inomhus"
+        app:layout_constraintStart_toStartOf="@id/background_image_view"
+        app:layout_constraintTop_toBottomOf="@id/background_image_view"
+        app:layout_constraintEnd_toEndOf="@id/background_image_view"/>
+        <TextView
+            android:id="@+id/activityLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Location: Luthagsesplanaden 16, Stockholm"
+            app:layout_constraintStart_toStartOf="@id/activityType"
+            app:layout_constraintTop_toBottomOf="@id/activityType"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="@id/background_image_view"/>
+        <TextView
+            android:id="@+id/activityDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Date: 23-03-18"
+            app:layout_constraintStart_toStartOf="@id/activityLocation"
+            app:layout_constraintTop_toBottomOf="@id/activityLocation" />
+
+         <TextView
+            android:id="@+id/activityTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Time: 17.30"
+            app:layout_constraintStart_toStartOf="@id/activityDate"
+            app:layout_constraintTop_toBottomOf="@id/activityDate" />
+        <TextView
+            android:id="@+id/activityMinPart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Min Participants: 2"
+            app:layout_constraintStart_toStartOf="@id/activityTime"
+            app:layout_constraintTop_toBottomOf="@id/activityTime" />
+        <TextView
+            android:id="@+id/activityMaxPart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Max Participants: 5"
+            app:layout_constraintStart_toStartOf="@id/activityMinPart"
+            app:layout_constraintTop_toBottomOf="@id/activityMinPart" />
+    <TextView
+        android:id="@+id/activityDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Description: Har bokat en tid för fotboll nu på söndag, alla som vill får komma! Hör av er för frågor."
+        app:layout_constraintStart_toStartOf="@id/activityMaxPart"
+        app:layout_constraintTop_toBottomOf="@id/activityMaxPart"
+        app:layout_constraintEnd_toEndOf="@id/background_image_view"
+        />
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/back_to_activities"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="13dp"
+        android:text="Back to Activities"
+        android:textStyle="normal"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activityDescription"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/button_contact"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="13dp"
+        android:text="Send Email"
+        android:textStyle="normal"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/back_to_activities"
+        app:layout_constraintTop_toBottomOf="@id/activityDescription"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</android.support.constraint.ConstraintLayout>

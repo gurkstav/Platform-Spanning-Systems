@@ -151,8 +151,8 @@ public class SearchActivity extends AppCompatActivity implements GetDataInterfac
     }
 
     public void SearchClick(View view){
-        new GetData("http://10.0.2.2:8000/activities",this).execute();
-        //192.168.1.2
+        new GetData("http://192.168.1.2:8000/activities",this).execute();
+        //10.0.2.2
     }
 
     public void homeClick(View view){
