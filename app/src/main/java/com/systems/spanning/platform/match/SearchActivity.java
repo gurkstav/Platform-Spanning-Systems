@@ -95,35 +95,44 @@ public class SearchActivity extends AppCompatActivity implements GetDataInterfac
                 }
              });
 
-        button_pick_location = findViewById(R.id.pick_location_button);
-        pick_location_results = findViewById(R.id.pick_location_results);
+        Button button_pick_location = findViewById(R.id.pick_location_button);
 
         button_pick_location.setOnClickListener(new View.OnClickListener() {
-        @Override
+            @Override
             public void onClick(View view) {
-                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-
-                Intent intent;
-                try {
-                    intent = builder.build((Activity) view.getContext());
-                    startActivityForResult(intent, PLACE_PICKER_REQUEST);
-                } catch (GooglePlayServicesRepairableException e) {
-                    e.printStackTrace();
-                } catch (GooglePlayServicesNotAvailableException e) {
-                    e.printStackTrace();
-                }
+                startPlacePickerActivity(view);
             }
         });
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PLACE_PICKER_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                Place place = PlacePicker.getPlace(this, data);
-                String address = String.format("Place: %s", place.getAddress());
-                pick_location_results.setText(address);
-            }
+    private void startPlacePickerActivity(View view){
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+        try {
+            Intent intent = builder.build((Activity) view.getContext());
+            startActivityForResult(intent, PLACE_PICKER_REQUEST);
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_PICKER_REQUEST && resultCode == RESULT_OK) {
+            displaySelectedPlaceForPlacePicker(data);
+        }
+    }
+
+    private void displaySelectedPlaceForPlacePicker(Intent data) {
+        Place placeSelected = PlacePicker.getPlace(data, this);
+
+        String name = placeSelected.getName().toString();
+        String address = placeSelected.getAddress().toString();
+
+        TextView selectedLocation = (TextView) findViewById(R.id.pick_location_results);
+        selectedLocation.setText(address);
     }
 
     @Override

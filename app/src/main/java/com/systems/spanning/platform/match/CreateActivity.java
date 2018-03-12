@@ -95,19 +95,22 @@ public class CreateActivity extends AppCompatActivity implements
         button_pick_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startPlacePickerActivity();
+                startPlacePickerActivity(view);
             }
         });
     }
 
-    private void startPlacePickerActivity(){
-        PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
+    private void startPlacePickerActivity(View view){
+            PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
 
-        try {
-            Intent intent = intentBuilder.build(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            try {
+                Intent intent = builder.build((Activity) view.getContext());
+                startActivityForResult(intent, PLACE_PICKER_REQUEST);
+            } catch (GooglePlayServicesRepairableException e) {
+                e.printStackTrace();
+            } catch (GooglePlayServicesNotAvailableException e) {
+                e.printStackTrace();
+            }
     }
 
     @Override
@@ -124,7 +127,7 @@ public class CreateActivity extends AppCompatActivity implements
         String address = placeSelected.getAddress().toString();
 
         TextView selectedLocation = (TextView) findViewById(R.id.pick_location_results);
-        selectedLocation.setText(name + ", " + address);
+        selectedLocation.setText(address);
     }
 
 
