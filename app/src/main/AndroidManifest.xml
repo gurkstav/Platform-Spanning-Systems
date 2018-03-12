@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.systems.spanning.platform.match">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,8 +30,9 @@
         <activity android:name=".CreateActivity"/>
         <activity android:name=".OwnActivities"/>
         <activity android:name=".ForgotPasswordActivity"/>
-        <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_place_api"></meta-data>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCk0D4BMVZn_P-VOITkH1aaHXIae3zLzi0"></meta-data>
     </application>
 
 </manifest>
