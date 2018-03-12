@@ -1,8 +1,8 @@
 package com.systems.spanning.platform.match;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.app.Activity;
 import android.widget.TextView;
 import android.widget.NumberPicker;
 
@@ -35,9 +35,7 @@ public class CreateActivity extends AppCompatActivity implements
     int day, month, year, hour, minute;
     int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
 
-    int PLACE_PICKER_REQUEST = 1;
-    Button button_pick_location;
-    TextView pick_location_results;
+    private final int PLACE_PICKER_REQUEST = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,36 +90,43 @@ public class CreateActivity extends AppCompatActivity implements
             }
         });
 
-        button_pick_location = findViewById(R.id.pick_location_button);
-        pick_location_results = findViewById(R.id.pick_location_results);
+        Button button_pick_location = findViewById(R.id.pick_location_button);
 
         button_pick_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-
-                Intent intent;
-                try {
-                    intent = builder.build((Activity) view.getContext());
-                    startActivityForResult(intent, PLACE_PICKER_REQUEST);
-                } catch (GooglePlayServicesRepairableException e) {
-                    e.printStackTrace();
-                } catch (GooglePlayServicesNotAvailableException e) {
-                    e.printStackTrace();
-                }
+                startPlacePickerActivity();
             }
         });
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PLACE_PICKER_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                Place place = PlacePicker.getPlace(this, data);
-                String address = String.format("Place: %s", place.getAddress());
-                pick_location_results.setText(address);
-            }
+    private void startPlacePickerActivity(){
+        PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
+
+        try {
+            Intent intent = intentBuilder.build(this);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_PICKER_REQUEST && resultCode == RESULT_OK) {
+                displaySelectedPlaceForPlacePicker(data);
+        }
+    }
+
+    private void displaySelectedPlaceForPlacePicker(Intent data) {
+        Place placeSelected = PlacePicker.getPlace(data, this);
+
+        String name = placeSelected.getName().toString();
+        String address = placeSelected.getAddress().toString();
+
+        TextView selectedLocation = (TextView) findViewById(R.id.pick_location_results);
+        selectedLocation.setText(name + ", " + address);
+    }
+
 
     public void homeClick(View view) {
         Intent intent = new Intent(this, HomeActivity.class);
