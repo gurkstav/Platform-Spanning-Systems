@@ -102,7 +102,7 @@ public class CreateActivity extends AppCompatActivity implements
 
                 Intent intent;
                 try {
-                    intent = builder.build((Activity) getApplicationContext());
+                    intent = builder.build((Activity) view.getContext());
                     startActivityForResult(intent, PLACE_PICKER_REQUEST);
                 } catch (GooglePlayServicesRepairableException e) {
                     e.printStackTrace();
