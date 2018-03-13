@@ -25,20 +25,21 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
-public class SearchActivity extends AppCompatActivity implements GetDataInterface,
+public class SearchActivity extends AppCompatActivity implements PostDataArrayInterface,
         DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
 
     Spinner spinner;
-    private Button searchButton;
-    String data = null;
-
     Button button_pick_date_time;
     TextView pick_date_time_results;
     int day, month, year, hour, minute;
     int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
 
     int PLACE_PICKER_REQUEST = 1;
+    String location;
+    String address;
+    String date;
     Button button_pick_location;
     TextView pick_location_results;
 
@@ -46,6 +47,8 @@ public class SearchActivity extends AppCompatActivity implements GetDataInterfac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        spinner = findViewById(R.id.select_activity);
 
         final TextView textview_min2 = findViewById(R.id.textview_min2);
         NumberPicker numberpicker_min2 = findViewById(R.id.numberpicker_min2);
@@ -128,8 +131,8 @@ public class SearchActivity extends AppCompatActivity implements GetDataInterfac
     private void displaySelectedPlaceForPlacePicker(Intent data) {
         Place placeSelected = PlacePicker.getPlace(data, this);
 
-        String name = placeSelected.getName().toString();
-        String address = placeSelected.getAddress().toString();
+        location = placeSelected.getName().toString();
+        address = placeSelected.getAddress().toString();
 
         TextView selectedLocation = (TextView) findViewById(R.id.pick_location_results);
         selectedLocation.setText(address);
@@ -141,6 +144,7 @@ public class SearchActivity extends AppCompatActivity implements GetDataInterfac
         monthFinal = i1 + 1;
         dayFinal = i2;
 
+        date = dayFinal + "-" + monthFinal + "-" + yearFinal;
         Calendar c = Calendar.getInstance();
         hour = c.get(Calendar.HOUR_OF_DAY);
         minute = c.get(Calendar.MINUTE);
@@ -160,7 +164,17 @@ public class SearchActivity extends AppCompatActivity implements GetDataInterfac
     }
 
     public void SearchClick(View view){
-        new GetData("http://10.0.2.2:8000/activities",this).execute();
+        HashMap<String, String> postData = new HashMap<>();
+        if(location != null){
+          //  postData.put("location", location);
+        }
+        if(date != null){
+            // postData.put("date",date);
+        }
+        String Title = spinner.getSelectedItem().toString();
+        postData.put("title", Title);
+
+        new PostDataArray("http://10.0.2.2:8000/search", postData , this).execute();
         //10.0.2.2
         //192.168.1.2
         //130.242.98.63
