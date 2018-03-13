@@ -75,7 +75,7 @@ public class SearchActivity extends AppCompatActivity implements PostDataArrayIn
         numberpicker_min2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal){
-                textview_min2.setText("Select minimum \namount of \nparticipants: " + newVal);
+                textview_min2.setText("Select \nminimum \namount of \nparticipants: " + newVal);
                 numMin = newVal;
             }
         });
@@ -83,7 +83,7 @@ public class SearchActivity extends AppCompatActivity implements PostDataArrayIn
         numberpicker_max2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal2, int newVal2){
-                textview_max2.setText("Select maximum \namount of \nparticipants: " + newVal2);
+                textview_max2.setText("Select \nmaximum \namount of \nparticipants: " + newVal2);
                 numMax = newVal2;
             }
         });

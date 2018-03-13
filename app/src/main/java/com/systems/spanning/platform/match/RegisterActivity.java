@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity implements PostDataInter
                     Intent intent = new Intent(this, LoginActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(this, result.getString("msg"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, result.getString("message"), Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException je) {
 

@@ -254,7 +254,7 @@ public class CreateActivity extends AppCompatActivity implements PostDataInterfa
                     intent.putExtra("email", email);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(this, result.getString("msg"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, result.getString("Could not create activity, please try again later!"), Toast.LENGTH_SHORT).show();
                 }
             }
         }
