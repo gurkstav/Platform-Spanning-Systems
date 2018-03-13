@@ -1,7 +1,6 @@
 'use strict';
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    jwt = require('jsonwebtoken');
+    Schema = mongoose.Schema;
 
 //Schema:
 var activitiesSchema = new Schema({
@@ -13,7 +12,7 @@ var activitiesSchema = new Schema({
     location: {type: String, required: true, lowercase: true},
     min_participants: {type: String, required: true, lowercase: true},
     max_participants: {type: String, required: true, lowercase: true},
-    token: {type: String, required: true, lowercase: true}
+    email: {type: String, requires: true, lowercase: true}
     });
 
 
