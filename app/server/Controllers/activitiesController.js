@@ -45,31 +45,9 @@ exports.create_a_activity = function(req, res) {
         new_activity.save(function (err, activity) {
             if (err)
                 res.send(err);
-            res.json(activity);// {message: 'Activity successfully created'});
+            res.json(activity);
         });
     }
-};
-
-exports.create_activity = function(req, res) {
-    if (!req.body.title || !req.body.description || !req.body.type || !req.body.date || !req.body.time || !req.body.location || !req.body.min_participants || !req.body.max_participants) {
-        res.json({success: false, msg: 'Everything must be filled in'});
-    } else {
-                    var new_activity = new activities({
-                        title: req.body.title,
-                        description: req.body.description,
-                        type: req.body.type,
-                        date: req.body.date,
-                        time: req.body.time,
-                        location: req.body.location,
-                        min_participants: req.body.min_participants,
-                        max_participants: req.body.max_participants,
-                    });
-                    new_activity.save(function (err, activity) {
-                        if (err)
-                            res.send(err);
-                        res.json({success: true, message: 'Activity successfully created'});
-                    });
-                }
 };
 
 
