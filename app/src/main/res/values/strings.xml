@@ -33,7 +33,7 @@
     <string name="new_search">Make New Search</string>
     <string name="newPassword">Enter Email to Send New Password</string>
     <string name="wrongPassword">Wrong Password or Email</string>
-    <string name="chooseActivity">Type of Activity</string>
+    <string name="chooseActivity">Title of Activity</string>
     <string name="activity_type">Type of Activity: %1$s</string>
     <string name="activity_date">Date: %1$s</string>
     <string name="activity_time">Time: %1$s</string>

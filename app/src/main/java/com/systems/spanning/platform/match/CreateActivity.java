@@ -40,7 +40,9 @@ public class CreateActivity extends AppCompatActivity implements PostDataInterfa
     Button button_pick_date_time;
     TextView pick_date_time_results;
     int day, month, year, hour, minute;
-    int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
+    int dayFinal = 0;
+    int monthFinal, yearFinal, hourFinal;
+    int minuteFinal = 0;
 
     private final int PLACE_PICKER_REQUEST = 1;
     TextView pick_location_results;
@@ -49,7 +51,7 @@ public class CreateActivity extends AppCompatActivity implements PostDataInterfa
     private String Pick_location_results;
 
     private String title;
-    private String description;
+    private String description = "";
     private String type;
     private String date;
     private String time;
@@ -202,20 +204,24 @@ public class CreateActivity extends AppCompatActivity implements PostDataInterfa
         description = Description.getText().toString();
         type = spinner.getSelectedItem().toString();
 
-        date = (dayFinal + "-" + monthFinal + "-" + yearFinal);
-        time = (hourFinal + ":" + minuteFinal);
+        date = dayFinal + "-" + monthFinal + "-" + yearFinal;
+        time = hourFinal + ":" + minuteFinal;
 
         //email = something.getText().toString();
         email = getIntent().getStringExtra("email");
 
-        if(date == null){
+
+        if(title.equals("")){
+            Toast.makeText(this, "Please put a title for your activity!", Toast.LENGTH_SHORT).show();
+        }
+        else if(dayFinal == 0){
             Toast.makeText(this,"Date and Time is needed!", Toast.LENGTH_SHORT).show();
         }
-        else if(time == null){
+        else if(minuteFinal == 0){
             Toast.makeText(this,"Time is needed!", Toast.LENGTH_SHORT).show();
         }
-        else if(title.equals("")){
-            Toast.makeText(this, "Please put a title for your activity!", Toast.LENGTH_SHORT).show();
+        else if(location == null){
+            Toast.makeText(this,"Location is needed!", Toast.LENGTH_SHORT).show();
         }
         else {
 
