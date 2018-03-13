@@ -16,7 +16,6 @@ module.exports = function(app){
         .post(activities.create_a_activity);
 
     app.route('/search')
-        //.get(activities.list_all_activities)
         .post(activities.search_activities);
 
     // users Routes
