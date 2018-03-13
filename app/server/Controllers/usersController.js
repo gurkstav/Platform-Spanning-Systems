@@ -1,8 +1,5 @@
 var mongoose = require('mongoose'),
-    express = require('express'),
-    users = mongoose.model('users'),
-    app = express(),
-    jwt = require('jsonwebtoken');
+    users = mongoose.model('users');
 
 exports.list_all_users = function(req, res){
     users.find({}, function(err, users){
@@ -41,18 +38,16 @@ exports.update_a_user = function(req, res){
 };
 
 exports.delete_a_user = function(req, res){
-    users.remove({
-        _id: req.params.userId
-    }, function(err, users) {
+    users.remove({_id: req.params.userId}, function(err, users) {
         if (err)
             res.send(err);
-        res.json({ message: 'User successfully deleted' });
+        res.json({ message: 'User successfully deleted'});
     });
 };
 
 exports.register_user = function(req, res) {
   if (!req.body.full_name || !req.body.ssn || !req.body.email || !req.body.password ) {
-    res.json({success: false, msg: 'Everything must be filled in'});
+    res.json({success: false, message: 'Everything must be filled in'});
   } else {
     var newUser = new users({
       full_name: req.body.full_name,
@@ -63,9 +58,9 @@ exports.register_user = function(req, res) {
     // save the user
     newUser.save(function(err) {
       if (err) {
-        return res.json({success: false, msg: 'Email already exists.'});
+        return res.json({success: false, message: 'Email already exists.'});
       }
-      res.json({success: true, msg: 'Successful created new user.'});
+      res.json({success: true, message: 'Successful created new user.'});
     });
   }
 };

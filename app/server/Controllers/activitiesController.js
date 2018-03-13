@@ -42,7 +42,8 @@ exports.search_own_activities = function(req,res){
 };
 
 exports.create_a_activity = function(req, res) {
-    if (!req.body.title || !req.body.description || !req.body.type || !req.body.date || !req.body.time || !req.body.location || !req.body.min_participants || !req.body.max_participants || !req.body.email) {
+    if (!req.body.title || !req.body.description || !req.body.type || !req.body.date || !req.body.time
+        || !req.body.location || !req.body.min_participants || !req.body.max_participants || !req.body.email) {
         res.json({success: false, message: 'Everything must be filled in'});
     } else {
         var new_activity = new activities({
@@ -56,7 +57,7 @@ exports.create_a_activity = function(req, res) {
             max_participants: req.body.max_participants,
             email: req.body.email
         });
-        new_activity.save(function (err, activity) {
+        new_activity.save(function (err) {
             if (err)
                 res.send(err);
         });
