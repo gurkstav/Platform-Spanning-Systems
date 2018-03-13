@@ -45,6 +45,7 @@
     <string name="userEmail">Creators Email: %1$s</string>
     <string name="button_pick_location">Pick Location</string>
     <string name="button_pick_date_time">Pick Date and Time</string>
+    <string name="button_pick_date">Pick Date</string>
     <string name="button_participant_amount">Participant amount</string>
     <string name="google_place_api">AIzaSyCk0D4BMVZn_P-VOITkH1aaHXIae3zLzi0</string>
     <string name="enter_SSN">Enter SSN</string>

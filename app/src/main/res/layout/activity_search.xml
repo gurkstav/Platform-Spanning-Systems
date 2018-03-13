@@ -60,7 +60,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
-            android:text="@string/button_pick_date_time"
+            android:text="@string/button_pick_date"
             android:textAllCaps="false" />
         <TextView
             android:id="@+id/pick_date_time_results"

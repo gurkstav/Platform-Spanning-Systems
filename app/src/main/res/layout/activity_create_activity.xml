@@ -9,34 +9,36 @@
     tools:context="com.systems.spanning.platform.match.CreateActivity">
 
     <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/LinearID"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:clickable="true"
+        android:focusable="true"
         android:focusableInTouchMode="true"
-        android:id="@+id/LinearID"
-        android:focusable="true">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints">
 
-    <android.support.v7.widget.AppCompatImageButton
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_gravity="end"
-        android:background="@drawable/home_button"
-        android:onClick="homeClick"
-        android:layout_marginEnd="15dp"
-        android:layout_marginTop="10dp"/>
+        <android.support.v7.widget.AppCompatImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/home_button"
+            android:onClick="homeClick" />
 
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/select_activity"
             android:layout_width="250dp"
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:entries="@array/search_activity_type"/>
+            android:entries="@array/search_activity_type" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayoutActivity"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="65dp">
 
@@ -46,35 +48,36 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/chooseActivity"
                 android:inputType="text"
-                android:layout_marginStart="5dp"
                 android:maxLines="1" />
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
-            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:id="@+id/button_pick_date_time"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
             android:text="@string/button_pick_date_time"
             android:textAllCaps="false" />
+
         <TextView
             android:id="@+id/pick_date_time_results"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:gravity="center"
             android:text="" />
 
         <android.support.v7.widget.AppCompatButton
-            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:id="@+id/pick_location_button"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal"
             android:layout_below="@+id/pick_location_results"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
             android:text="@string/button_pick_location"
             android:textAllCaps="false" />
 
@@ -82,48 +85,54 @@
             android:id="@+id/pick_location_results"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_gravity="center_horizontal"
-            android:text=""
-            android:layout_alignParentTop="true"/>
+            android:gravity="center"
+            android:text="" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:layout_gravity="center_horizontal">
+
             <TextView
                 android:id="@+id/textview_min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Select minimum \namount of \nparticipants: " />
+                android:gravity="center"
+                android:text="Select \nminimum \namount of \nparticipants: 0" />
 
             <NumberPicker
                 android:id="@+id/numberpicker_min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleX="0.50"
-                android:scaleY="0.50"
-                android:layout_below="@id/textview_min" />
+                android:layout_below="@id/textview_min"
+                android:layout_centerVertical="true"
+                android:scaleX="0.70"
+                android:scaleY="0.70" />
 
             <TextView
                 android:id="@+id/textview_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Select maximum \namount of \nparticipants: " />
+                android:gravity="center"
+                android:text="Select \nmaximum \namount of \nparticipants: 0" />
 
             <NumberPicker
                 android:id="@+id/numberpicker_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleX="0.50"
-                android:scaleY="0.50"
-                android:layout_below="@id/textview_max" />
+                android:layout_below="@id/textview_max"
+                android:layout_centerVertical="true"
+                android:scaleX="0.70"
+                android:scaleY="0.70"/>
         </LinearLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayoutDescription"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="65dp">
 
@@ -131,22 +140,21 @@
                 android:id="@+id/textInputDescription"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/chooseActivity"
+                android:hint="Description"
                 android:inputType="text"
-                android:layout_marginStart="5dp"
                 android:maxLines="1" />
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
-            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:id="@+id/button_create_activity"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
-            android:text="@string/button_create_activity"
+            android:layout_marginTop="10dp"
             android:onClick="createActivity"
+            android:text="@string/button_create_activity"
             android:textAllCaps="false" />
 
 

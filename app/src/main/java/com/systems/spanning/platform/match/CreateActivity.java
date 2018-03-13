@@ -3,6 +3,7 @@ package com.systems.spanning.platform.match;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.NumberPicker;
 
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -22,6 +24,7 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
 import java.util.Calendar;
+import java.util.HashMap;
 
 /**
  * Created by Gurkstav on 2018-02-12.
@@ -36,17 +39,43 @@ public class CreateActivity extends AppCompatActivity implements
     int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
 
     private final int PLACE_PICKER_REQUEST = 1;
+    TextView pick_location_results;
+
+    private String Pick_date_and_time_results;
+    private String Pick_location_results;
+
+    private String title;
+    private String description;
+    private String type;
+    private String date;
+    private String time;
+    private String location;
+    private String min_participants;
+    private String max_participants;
+    private String email;
+
+    Spinner spinner;
+    TextView Type;
+    NumberPicker numberpicker_min;
+    NumberPicker numberpicker_max;
+    TextView Description;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_activity);
 
+        spinner = findViewById(R.id.select_activity);
+        Type = findViewById(R.id.textInputActivityType);
+        Description = findViewById(R.id.textInputDescription);
+
         final TextView textview_min = findViewById(R.id.textview_min);
-        NumberPicker numberpicker_min = findViewById(R.id.numberpicker_min);
+        numberpicker_min = findViewById(R.id.numberpicker_min);
 
         final TextView textview_max = findViewById(R.id.textview_max);
-        NumberPicker numberpicker_max = findViewById(R.id.numberpicker_max);
+        numberpicker_max = findViewById(R.id.numberpicker_max);
 
         textview_min.setTextColor(Color.parseColor("#000000"));
         textview_max.setTextColor(Color.parseColor("#000000"));
@@ -61,15 +90,17 @@ public class CreateActivity extends AppCompatActivity implements
 
         numberpicker_min.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
-                textview_min.setText("Select minimum \namount of \nparticipants: " + newVal);
+            public void onValueChange(NumberPicker picker, int oldVal, int minVal){
+                textview_min.setText("Select \nminimum \namount of \nparticipants: " + minVal);
+                String.valueOf(minVal);
             }
         });
 
         numberpicker_max.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onValueChange(NumberPicker picker, int oldVal2, int newVal2){
-                textview_max.setText("Select maximum \namount of \nparticipants: " + newVal2);
+            public void onValueChange(NumberPicker picker, int oldVal2, int maxVal){
+                textview_max.setText("Select \nmaximum \namount of \nparticipants: " + maxVal);
+                String.valueOf(maxVal);
             }
         });
 
@@ -101,16 +132,16 @@ public class CreateActivity extends AppCompatActivity implements
     }
 
     private void startPlacePickerActivity(View view){
-            PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
 
-            try {
-                Intent intent = builder.build((Activity) view.getContext());
-                startActivityForResult(intent, PLACE_PICKER_REQUEST);
-            } catch (GooglePlayServicesRepairableException e) {
-                e.printStackTrace();
-            } catch (GooglePlayServicesNotAvailableException e) {
-                e.printStackTrace();
-            }
+        try {
+            Intent intent = builder.build((Activity) view.getContext());
+            startActivityForResult(intent, PLACE_PICKER_REQUEST);
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -123,11 +154,11 @@ public class CreateActivity extends AppCompatActivity implements
     private void displaySelectedPlaceForPlacePicker(Intent data) {
         Place placeSelected = PlacePicker.getPlace(data, this);
 
-        String name = placeSelected.getName().toString();
-        String address = placeSelected.getAddress().toString();
+        //String name = placeSelected.getName().toString();
+        location = placeSelected.getAddress().toString();
 
         TextView selectedLocation = (TextView) findViewById(R.id.pick_location_results);
-        selectedLocation.setText(address);
+        selectedLocation.setText(location);
     }
 
 
@@ -159,5 +190,35 @@ public class CreateActivity extends AppCompatActivity implements
         pick_date_time_results.setText("Date: " + dayFinal + "-" + monthFinal + "-" + yearFinal + "\n" +
                 "Time: " + hourFinal + ":" + minuteFinal);
     }
+
+    public void createActivity(View view){
+
+        title = Type.getText().toString();
+        description = Description.getText().toString();
+        type = spinner.getSelectedItem().toString();
+
+        date = (dayFinal + "-" + monthFinal + "-" + yearFinal);
+        time = (hourFinal + ":" + minuteFinal);
+
+        //email = something.getText().toString();
+        String email = "hejsan";
+        location = "hemma";
+
+        HashMap<String, String> postData = new HashMap<>();
+        postData.put("title", title);
+        postData.put("description", description);
+        postData.put("type", type);
+        postData.put("date", date);
+        postData.put("time", time);
+        postData.put("location", location);
+        postData.put("min_participants", min_participants);
+        postData.put("max_participants", max_participants);
+        postData.put("email", email);
+
+        new PostData("http://10.0.2.2:8000/create", postData, (PostDataInterface) this).execute();
+
+    }
+
+
 
 }

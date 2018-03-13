@@ -97,7 +97,7 @@
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginTop="13dp"
-        android:text="Send Email"
+        android:text="Start Chatting"
         android:textStyle="normal"
         android:textAllCaps="false"
         android:textSize="12sp"
