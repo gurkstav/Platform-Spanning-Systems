@@ -6,13 +6,11 @@ var express = require('express'),
     morgan = require('morgan'),
     activities = require('./models/activities'),
     users = require('./models/users'),
-    config = require('./config'),
     bodyParser = require('body-parser');
 
 //connect to mongoDB:
 mongoose.Promise = global.Promise;
-mongoose.connect(config.database);
-app.set('superSecret', config.secret);
+mongoose.connect('mongodb://Matilda:playdate123@ds123658.mlab.com:23658/playdate');
 
 //express:
 app.use(bodyParser.urlencoded({extended: false}));
