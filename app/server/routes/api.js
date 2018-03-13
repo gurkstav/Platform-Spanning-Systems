@@ -19,6 +19,9 @@ module.exports = function(app){
         //.get(activities.list_all_activities)
         .post(activities.search_activities);
 
+    app.route('/ownActivities')
+        .post(activities.search_own_activities);
+
     // users Routes
     app.route('/users')
         .get(users.list_all_users);
@@ -33,6 +36,7 @@ module.exports = function(app){
 
     app.route('/login')
         .post(users.login_user);
+
 
 
 

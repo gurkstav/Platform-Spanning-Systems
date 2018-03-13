@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity implements PostDataInterfac
             else {
                 if (result.getBoolean("success")) {
                     Intent intent = new Intent(this, HomeActivity.class);
+                    intent.putExtra("email", Email);
                     startActivity(intent);
                 } else {
                     Toast.makeText(this, result.getString("msg"), Toast.LENGTH_SHORT).show();

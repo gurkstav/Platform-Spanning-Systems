@@ -152,6 +152,7 @@ public class SearchActivity extends AppCompatActivity implements PostDataArrayIn
         dayFinal = i2;
 
         date = dayFinal + "-" + monthFinal + "-" + yearFinal;
+        pick_date_results.setText(date);
     }
 
 

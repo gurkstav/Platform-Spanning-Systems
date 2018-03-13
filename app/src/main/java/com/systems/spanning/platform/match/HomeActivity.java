@@ -11,8 +11,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class HomeActivity extends AppCompatActivity implements GetDataInterface {
+public class HomeActivity extends AppCompatActivity implements PostDataArrayInterface {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +27,18 @@ public class HomeActivity extends AppCompatActivity implements GetDataInterface 
     }
 
     public void newGoToCreateActivity(View view){
+        String email = getIntent().getStringExtra("email");
         Intent intent = new Intent(this, CreateActivity.class);
+        intent.putExtra("email",email);
         startActivity(intent);
     }
 
     public void newGoToShowOwnActivity(View view){
-        new GetData("http://10.0.2.2:8000/activities",this).execute();
+        HashMap<String, String> postData = new HashMap<>();
+        String email = getIntent().getStringExtra("email");
+        postData.put("email", email);
+
+        new PostDataArray("http://10.0.2.2:8000/ownActivities", postData, this).execute();
     }
 
     @Override
