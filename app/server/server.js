@@ -7,7 +7,6 @@ var express = require('express'),
     activities = require('./models/activities'),
     users = require('./models/users'),
     config = require('./config'),
-    jwt = require('jsonwebtoken'),
     bodyParser = require('body-parser');
 
 //connect to mongoDB:
@@ -24,7 +23,6 @@ app.use(morgan('dev'));
 //routes:
 var routes = require('./routes/api');
 routes(app);
-//app.use('/activity_api', require('./routes/activity_api'), Activities);
 
 //start server:
 app.listen(port);

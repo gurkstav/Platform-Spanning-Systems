@@ -10,7 +10,6 @@ Required npm packages
 - mongoose
 - morgan
 - nodemon
-- jsonwebtoken
 
 Recommended for testing api
 - Postman
