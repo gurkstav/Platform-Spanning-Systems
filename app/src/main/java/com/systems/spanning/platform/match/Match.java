@@ -138,9 +138,24 @@ public class Match implements Parcelable {
         this.thumbnail = thumbnail;
     }
 
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setDescription(String description) {
+
+        this.description = description;
+    }
+
+    public void setTitle(String title) {
+
+        this.title = title;
+    }
+
     public String getTitle() {
 
         return title;
+
     }
     public String getDescription() {
 
