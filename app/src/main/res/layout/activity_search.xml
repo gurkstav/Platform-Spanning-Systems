@@ -67,7 +67,8 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="" />
+            android:text=""
+            android:gravity="center" />
 
         <android.support.v7.widget.AppCompatButton
             style="@style/AppTheme.RoundedCornerMaterialButton"
@@ -84,7 +85,8 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="" />
+            android:text=""
+            android:gravity="center" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -95,14 +97,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Select minimum \namount of \nparticipants: " />
+                android:gravity="center"
+                android:text="Select \nminimum \namount of \nparticipants: 2" />
 
             <NumberPicker
                 android:id="@+id/numberpicker_min2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleX="0.50"
-                android:scaleY="0.50"
+                android:scaleX="0.70"
+                android:scaleY="0.70"
                 android:layout_below="@id/textview_min2" />
 
             <TextView
@@ -110,14 +113,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Select maximum \namount of \nparticipants: " />
+                android:gravity="center"
+                android:text="Select \nmaximum \namount of \nparticipants: 0" />
 
             <NumberPicker
                 android:id="@+id/numberpicker_max2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleX="0.50"
-                android:scaleY="0.50"
+                android:scaleX="0.70"
+                android:scaleY="0.70"
                 android:layout_below="@id/textview_max2" />
         </LinearLayout>
 
