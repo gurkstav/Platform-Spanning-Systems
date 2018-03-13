@@ -13,6 +13,7 @@ module.exports = function(app){
         .delete(activities.delete_a_activity);
 
     app.route('/create')
+        //.get(users.find_user)
         .post(activities.create_a_activity);
 
     app.route('/search')

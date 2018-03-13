@@ -79,7 +79,7 @@ exports.login_user = function(req, res) {
           res.json({success: false, message: 'Login failed. Email not found.'});
       } else if (users) {
           // check if password matches
-          users.comparePassword(req.body.password, function (isMatch, err) {
+          users.comparePassword(req.body.password, function (isMatch) {
               if (!isMatch) {
                   res.json({success: false, message: 'Login failed. Wrong password.'});
               } else {
