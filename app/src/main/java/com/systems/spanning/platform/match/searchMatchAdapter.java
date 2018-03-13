@@ -1,21 +1,18 @@
 package com.systems.spanning.platform.match;
 
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
-
 import java.util.List;
-
-/**
- * Created by Marcus on 2018-02-08.
- */
 
 public class searchMatchAdapter extends RecyclerView.Adapter<searchMatchAdapter.MyViewHolder> {
 
@@ -25,12 +22,9 @@ public class searchMatchAdapter extends RecyclerView.Adapter<searchMatchAdapter.
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView type;
         private TextView date;
-        private TextView location;
-        private TextView max_part;
-        private TextView min_part;
+        private TextView city;
         private ImageView thumbnail;
         private ImageView cardBackground;
-        private TextView email;
 
         private MyViewHolder(View view) {
             super(view);
@@ -38,10 +32,7 @@ public class searchMatchAdapter extends RecyclerView.Adapter<searchMatchAdapter.
             cardBackground = view.findViewById(R.id.cardBackground);
             type = view.findViewById(R.id.activityType);
             date = view.findViewById(R.id.activityDate);
-            location = view.findViewById(R.id.activityLocation);
-            max_part = view.findViewById(R.id.activityMaxPart);
-            min_part = view.findViewById(R.id.activityMinPart);
-            email = view.findViewById(R.id.activityEmail);
+            city = view.findViewById(R.id.activityCity);
         }
     }
 
@@ -65,18 +56,15 @@ public class searchMatchAdapter extends RecyclerView.Adapter<searchMatchAdapter.
         Resources res = mContext.getResources();
         String type = String.format(res.getString(R.string.activity_type), match.getType());
         String date = String.format(res.getString(R.string.activity_date), match.getDate());
-        String location = String.format(res.getString(R.string.activity_location), match.getLocation());
-        String max = String.format(res.getString(R.string.max_participants), String.valueOf(match.getMax_participants()));
-        String min = String.format(res.getString(R.string.min_participants), String.valueOf(match.getMin_participants()));
-        String email = String.format(res.getString(R.string.userEmail), match.getEmail());
+        String location = String.format(res.getString(R.string.activity_city), match.getLocation());
+        // String time = String.format(res.getString(R.string.activity_time), match.getTime());
+
 
         if(match.getThumbnail() == 1) {
             holder.type.setText(type);
             holder.date.setText(date);
-            holder.location.setText(location);
-            holder.max_part.setText(max);
-            holder.min_part.setText(min);
-            holder.email.setText(email);
+            holder.city.setText(location);
+            //holder.time.setText(time);
 
             switch(match.getType()){
                 case "Sport":
@@ -122,5 +110,11 @@ public class searchMatchAdapter extends RecyclerView.Adapter<searchMatchAdapter.
     public int getItemCount() {
         return matchList.size();
     }
+
+    public Match getItem(int position) {
+        return matchList.get(position);
+    }
+
 }
+
 

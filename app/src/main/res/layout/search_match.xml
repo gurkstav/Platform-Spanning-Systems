@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="250dp"
-    android:layout_height="115dp"
+    android:layout_height="110dp"
     android:layout_gravity="center_horizontal"
     android:layout_marginTop="10dp">
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardElevation= "10dp"
+        card_view:cardCornerRadius="3dp"
         android:clickable="true"
         android:focusable="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center|start">
+
 
             <ImageView
                 android:id="@+id/thumbnail"
@@ -33,37 +38,36 @@
                 android:id ="@+id/activityType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"/>
+                android:text="Type of activity: Fotboll inomhus eller inte"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="40dp"/>
             <TextView
                 android:id ="@+id/activityDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:text="Date: 06-10-17"
+                android:layout_marginStart="40dp"
                 android:layout_below="@id/activityType"/>
             <TextView
-                android:id ="@+id/activityLocation"
+                android:id ="@+id/activityTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Time: 17.30"
+                android:layout_below="@+id/activityType"
+                android:layout_toRightOf="@id/activityDate"/>
+            <TextView
+                android:id ="@+id/activityCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="City: Stockholm"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginBottom="5dp"
                 android:layout_below="@id/activityDate"/>
-            <TextView
-                android:id ="@+id/activityMinPart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_below="@id/activityLocation"/>
-            <TextView
-                android:id ="@+id/activityMaxPart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_below="@id/activityMinPart"/>
-            <TextView
-                android:id ="@+id/activityEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_below="@id/activityMaxPart"/>
+
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>

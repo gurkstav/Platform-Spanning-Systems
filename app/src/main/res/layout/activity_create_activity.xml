@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/CreateActivity"
+    tools:context="com.systems.spanning.platform.match.CreateActivity">
 
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -37,7 +39,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="65dp">
-
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/textInputActivityType"
@@ -73,6 +74,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/pick_location_results"
             android:text="@string/button_pick_location"
             android:textAllCaps="false" />
 
@@ -81,7 +83,8 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="" />
+            android:text=""
+            android:layout_alignParentTop="true"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -117,6 +120,23 @@
                 android:scaleY="0.50"
                 android:layout_below="@id/textview_max" />
         </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayoutDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/textInputDescription"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/chooseActivity"
+                android:inputType="text"
+                android:layout_marginStart="5dp"
+                android:maxLines="1" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
             style="@style/AppTheme.RoundedCornerMaterialButton"
