@@ -55,18 +55,18 @@ public class MatchActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(View view, int position) {
                     Match match = adapter.getItem(position);
+                    if(match.getThumbnail() != 0) {
+                        android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                        android.support.v4.app.Fragment prev = getSupportFragmentManager().findFragmentByTag("cardDialog");
+                        if (prev != null) {
+                            ft.remove(prev);
+                        }
+                        ft.addToBackStack(null);
 
-                    android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    android.support.v4.app.Fragment prev = getSupportFragmentManager().findFragmentByTag("cardDialog");
-                    if (prev != null) {
-                        ft.remove(prev);
+                        CardFragment cardFragment = CardFragment.newInstance(match);
+                        cardFragment.show(ft, "cardDialog");
+
                     }
-                    ft.addToBackStack(null);
-
-                    CardFragment cardFragment = CardFragment.newInstance(match);
-                    cardFragment.show(ft,"cardDialog");
-
-
                 }
 
                 @Override
