@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity implements PostDataInterfac
                     intent.putExtra("email", Email);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(this, result.getString("msg"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, result.getString("message"), Toast.LENGTH_SHORT).show();
                 }
             }
         }
