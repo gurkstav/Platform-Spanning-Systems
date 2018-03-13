@@ -61,8 +61,8 @@ exports.create_a_activity = function(req, res) {
         new_activity.save(function (err, activity) {
             if (err)
                 res.send(err);
-            res.json({success: true, message: 'Activity successfully created!'});
         });
+        res.json({success: true, message: 'Activity successfully created!'});
     }
 };
 
