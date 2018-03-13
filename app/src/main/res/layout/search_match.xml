@@ -38,7 +38,6 @@
                 android:id ="@+id/activityType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Type of activity: Fotboll inomhus eller inte"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="40dp"/>
             <TextView
@@ -46,7 +45,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Date: 06-10-17"
                 android:layout_marginStart="40dp"
                 android:layout_below="@id/activityType"/>
             <TextView
@@ -55,14 +53,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:text="Time: 17.30"
                 android:layout_below="@+id/activityType"
                 android:layout_toRightOf="@id/activityDate"/>
             <TextView
                 android:id ="@+id/activityCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="City: Stockholm"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="40dp"
                 android:layout_marginBottom="5dp"

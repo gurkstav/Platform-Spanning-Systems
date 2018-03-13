@@ -3,6 +3,7 @@ package com.systems.spanning.platform.match;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.NumberPicker;
@@ -23,6 +24,9 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -30,13 +34,15 @@ import java.util.HashMap;
  * Created by Gurkstav on 2018-02-12.
  */
 
-public class CreateActivity extends AppCompatActivity implements
+public class CreateActivity extends AppCompatActivity implements PostDataInterface,
         DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
 
     Button button_pick_date_time;
     TextView pick_date_time_results;
     int day, month, year, hour, minute;
-    int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
+    int dayFinal = 0;
+    int monthFinal, yearFinal, hourFinal;
+    int minuteFinal = 0;
 
     private final int PLACE_PICKER_REQUEST = 1;
     TextView pick_location_results;
@@ -45,14 +51,15 @@ public class CreateActivity extends AppCompatActivity implements
     private String Pick_location_results;
 
     private String title;
-    private String description;
+    private String description = "";
     private String type;
     private String date;
     private String time;
     private String location;
-    private String min_participants;
-    private String max_participants;
-    private String email;
+    private String min_participants = "2";
+    private String max_participants = "20";
+
+    String email;
 
     Spinner spinner;
     TextView Type;
@@ -80,19 +87,19 @@ public class CreateActivity extends AppCompatActivity implements
         textview_min.setTextColor(Color.parseColor("#000000"));
         textview_max.setTextColor(Color.parseColor("#000000"));
 
-        numberpicker_min.setMinValue(0);
-        numberpicker_min.setMaxValue(100);
+        numberpicker_min.setMinValue(2);
+        numberpicker_min.setMaxValue(20);
         numberpicker_min.setWrapSelectorWheel(true);
 
         numberpicker_max.setMinValue(0);
-        numberpicker_max.setMaxValue(100);
+        numberpicker_max.setMaxValue(20);
         numberpicker_max.setWrapSelectorWheel(true);
 
         numberpicker_min.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int minVal){
                 textview_min.setText("Select \nminimum \namount of \nparticipants: " + minVal);
-                String.valueOf(minVal);
+                min_participants = String.valueOf(minVal);
             }
         });
 
@@ -100,7 +107,7 @@ public class CreateActivity extends AppCompatActivity implements
             @Override
             public void onValueChange(NumberPicker picker, int oldVal2, int maxVal){
                 textview_max.setText("Select \nmaximum \namount of \nparticipants: " + maxVal);
-                String.valueOf(maxVal);
+                max_participants = String.valueOf(maxVal);
             }
         });
 
@@ -197,28 +204,62 @@ public class CreateActivity extends AppCompatActivity implements
         description = Description.getText().toString();
         type = spinner.getSelectedItem().toString();
 
-        date = (dayFinal + "-" + monthFinal + "-" + yearFinal);
-        time = (hourFinal + ":" + minuteFinal);
+        date = dayFinal + "-" + monthFinal + "-" + yearFinal;
+        time = hourFinal + ":" + minuteFinal;
 
         //email = something.getText().toString();
-        String email = "hejsan";
-        location = "hemma";
+        email = getIntent().getStringExtra("email");
 
-        HashMap<String, String> postData = new HashMap<>();
-        postData.put("title", title);
-        postData.put("description", description);
-        postData.put("type", type);
-        postData.put("date", date);
-        postData.put("time", time);
-        postData.put("location", location);
-        postData.put("min_participants", min_participants);
-        postData.put("max_participants", max_participants);
-        postData.put("email", email);
 
-        new PostData("http://10.0.2.2:8000/create", postData, (PostDataInterface) this).execute();
+        if(title.equals("")){
+            Toast.makeText(this, "Please put a title for your activity!", Toast.LENGTH_SHORT).show();
+        }
+        else if(dayFinal == 0){
+            Toast.makeText(this,"Date and Time is needed!", Toast.LENGTH_SHORT).show();
+        }
+        else if(minuteFinal == 0){
+            Toast.makeText(this,"Time is needed!", Toast.LENGTH_SHORT).show();
+        }
+        else if(location == null){
+            Toast.makeText(this,"Location is needed!", Toast.LENGTH_SHORT).show();
+        }
+        else {
 
+            HashMap<String, String> postData = new HashMap<>();
+            postData.put("title", title);
+            postData.put("description", description);
+            postData.put("type", type);
+            postData.put("date", date);
+            postData.put("time", time);
+            postData.put("location", location);
+            postData.put("min_participants", min_participants);
+            postData.put("max_participants", max_participants);
+            postData.put("email", email);
+
+            new PostData("http://10.0.2.2:8000/create", postData, this).execute();
+        }
     }
 
 
+    @Override
+    public void fetchDataCallback(JSONObject result) {
+        try{
+            if(result == null){
+                Toast.makeText(this, "Could not connect with server, please try again later", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                if (result.getBoolean("success")) {
+                    Toast.makeText(this, "Activity Created!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, HomeActivity.class);
+                    intent.putExtra("email", email);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, result.getString("msg"), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+        catch(JSONException jse){
 
+        }
+    }
 }

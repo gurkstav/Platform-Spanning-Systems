@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Select \nminimum \namount of \nparticipants: 0" />
+                android:text="Select \nminimum \namount of \nparticipants: 2" />
 
             <NumberPicker
                 android:id="@+id/numberpicker_min"

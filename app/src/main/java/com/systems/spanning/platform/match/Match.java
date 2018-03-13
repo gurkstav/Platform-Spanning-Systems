@@ -8,8 +8,11 @@ import android.os.Parcelable;
  */
 
 public class Match implements Parcelable {
+    private String title;
+    private String description;
     private String type;
     private String date;
+    private String time;
     private String location;
     private String min_participants;
     private String max_participants;
@@ -17,9 +20,12 @@ public class Match implements Parcelable {
     private int thumbnail;
 
 
-    public Match(String Type, String Date, String Location, String Min_participants, String Max_participants, String Email, int Thumbnail) {
+    public Match(String Title, String Description, String Type, String Date, String Time, String Location, String Min_participants, String Max_participants, String Email, int Thumbnail) {
+        this.title = Title;
+        this.description = Description;
         this.type = Type;
         this.date = Date;
+        this.time = Time;
         this.location = Location;
         this.max_participants = Max_participants;
         this.min_participants = Min_participants;
@@ -28,8 +34,11 @@ public class Match implements Parcelable {
     }
 
     public Match (Parcel parcel) {
+        this.title = parcel.readString();
+        this.description = parcel.readString();
         this.type = parcel.readString();
         this.date = parcel.readString();
+        this.time = parcel.readString();
         this.location = parcel.readString();
         this.max_participants = parcel.readString();
         this.min_participants = parcel.readString();
@@ -43,8 +52,11 @@ public class Match implements Parcelable {
     }
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(description);
         dest.writeString(type);
         dest.writeString(date);
+        dest.writeString(time);
         dest.writeString(location);
         dest.writeString(max_participants);
         dest.writeString(min_participants);
@@ -124,5 +136,18 @@ public class Match implements Parcelable {
 
     public void setThumbnail(int thumbnail) {
         this.thumbnail = thumbnail;
+    }
+
+    public String getTitle() {
+
+        return title;
+    }
+    public String getDescription() {
+
+        return description;
+    }
+    public String getTime() {
+
+        return time;
     }
 }
