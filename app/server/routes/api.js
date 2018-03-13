@@ -4,13 +4,7 @@ module.exports = function(app){
 
     //activities Routes
     app.route('/activities')
-        .get(activities.list_all_activities)
-        .post(activities.create_a_activity);
-
-    app.route('/activities/:activityId')
-        .get(activities.read_a_activity)
-        .put(activities.update_a_activity)
-        .delete(activities.delete_a_activity);
+        .get(activities.list_all_activities);
 
     app.route('/create')
         .post(activities.create_a_activity);
@@ -21,14 +15,24 @@ module.exports = function(app){
     app.route('/ownActivities')
         .post(activities.search_own_activities);
 
+    app.route('/deleteActivity')
+        .delete(activities.delete_a_activity);
+
+    app.route('/updateActivity')
+        .delete(activities.update_a_activity);
+
     // users Routes
     app.route('/users')
         .get(users.list_all_users);
 
-    app.route('/users/:userId')
-        .get(users.read_a_user)
-        .put(users.update_a_user)
+    app.route('/findUser')
+        .get(users.find_user);
+
+    app.route('/deleteUser')
         .delete(users.delete_a_user);
+
+    app.route('/updateUser')
+        .delete(users.update_a_user);
 
     app.route('/register')
         .post(users.register_user);

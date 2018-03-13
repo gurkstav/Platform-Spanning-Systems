@@ -13,15 +13,13 @@ exports.list_all_users = function(req, res){
 };
 
 exports.find_user = function(req, res){
-   users.findOne({
-       email: req.body.email
-   }, function(err, users) {
+   users.findOne({email: req.body.email}, function(err, user) {
        if (err)
            res.send(err);
-       if (!users) {
+       if (!user) {
            res.json({success: false, message: 'Authentication failed. User not found'});
-       } else if (user) {
-           res.json({success: true, message: 'User found'});
+       } else if (users) {
+           res.json({success: true, message: 'User found', user});
        }
    });
 };
@@ -83,13 +81,7 @@ exports.login_user = function(req, res) {
               if (!isMatch) {
                   res.json({success: false, message: 'Login failed. Wrong password.'});
               } else {
-                  const payload = {
-                      email: users.email
-                  };
-                  var token = jwt.sign(payload, 'private.key', app.get('superSecret'), {
-                      expiresInMinutes: 1440 // 24 h
-                  });
-                  res.json({success: true, message: 'Login complete', token: token});
+                  res.json({success: true, message: 'Login complete'});
               }
           });
       }
