@@ -70,23 +70,22 @@ public class CardFragment extends DialogFragment{
         sendEmail = v.findViewById(R.id.button_contact);
 
         Resources res = getContext().getResources();
-        String type = String.format(res.getString(R.string.activity_type), match.getType());
+        String title = String.format(res.getString(R.string.activity_title), match.getTitle());
         String date = String.format(res.getString(R.string.activity_date), match.getDate());
-       // String time = String.format(res.getString(R.string.activity_time), match.getTime());
+        String time = String.format(res.getString(R.string.activity_time), match.getTime());
         String location = String.format(res.getString(R.string.activity_location), match.getLocation());
         String max = String.format(res.getString(R.string.max_participants), match.getMax_participants());
         String min = String.format(res.getString(R.string.min_participants), match.getMin_participants());
-       // String description = String.format(res.getString(R.string.activity_description), match.getDescription());
+        String description = String.format(res.getString(R.string.activity_description), match.getDescription());
 
-        String email = String.format(res.getString(R.string.userEmail), match.getEmail());
 
-        activityType.setText(type);
+        activityType.setText(title);
         activityLocation.setText(location);
         activityDate.setText(date);
-       // activityTime.setText(time);
+        activityTime.setText(time);
         activityMin.setText(min);
         activityMax.setText(max);
-       // activityDescription.setText(description);
+        activityDescription.setText(description);
 
         switch(match.getType()){
             case "Sport":
