@@ -27,6 +27,22 @@ exports.search_activities = function(req, res){
     }
 };
 
+exports.search_own_activities = function(req,res){
+    if(!req.body.email){
+        res.json({success: false, message: 'Email could not be found'})
+    } else {
+        activities.find({
+            email: req.body.email
+        }, function (err, activity) {
+            if (err)
+                res.send(err);
+            else if (activity) {
+                res.json(activity);
+            }
+        });
+    }
+};
+
 exports.create_a_activity = function(req, res) {
     if (!req.body.title || !req.body.description || !req.body.type || !req.body.date || !req.body.time || !req.body.location || !req.body.min_participants || !req.body.max_participants || !req.body.email) {
         res.json({success: false, message: 'Everything must be filled in'});
