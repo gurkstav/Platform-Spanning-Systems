@@ -28,20 +28,23 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class SearchActivity extends AppCompatActivity implements PostDataArrayInterface,
-        DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
+        DatePickerDialog.OnDateSetListener{
 
     Spinner spinner;
-    Button button_pick_date_time;
-    TextView pick_date_time_results;
-    int day, month, year, hour, minute;
-    int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
+    Button button_pick_date;
+    TextView pick_date_results;
+    int day, month, year;
+    int dayFinal, monthFinal, yearFinal;
 
     int PLACE_PICKER_REQUEST = 1;
     String location;
     String address;
     String date;
-    Button button_pick_location;
-    TextView pick_location_results;
+    int numMin = 0;
+    int numMax = 0;
+    NumberPicker numberpicker_min2;
+    NumberPicker numberpicker_max2;
+    TextView typeOfType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,28 +52,31 @@ public class SearchActivity extends AppCompatActivity implements PostDataArrayIn
         setContentView(R.layout.activity_search);
 
         spinner = findViewById(R.id.select_activity);
+        typeOfType = findViewById(R.id.textInputActivityType);
+
 
         final TextView textview_min2 = findViewById(R.id.textview_min2);
-        NumberPicker numberpicker_min2 = findViewById(R.id.numberpicker_min2);
+        numberpicker_min2 = findViewById(R.id.numberpicker_min2);
 
         final TextView textview_max2 = findViewById(R.id.textview_max2);
-        NumberPicker numberpicker_max2 = findViewById(R.id.numberpicker_max2);
+        numberpicker_max2 = findViewById(R.id.numberpicker_max2);
 
         textview_min2.setTextColor(Color.parseColor("#000000"));
         textview_max2.setTextColor(Color.parseColor("#000000"));
 
-        numberpicker_min2.setMinValue(0);
-        numberpicker_min2.setMaxValue(100);
+        numberpicker_min2.setMinValue(2);
+        numberpicker_min2.setMaxValue(20);
         numberpicker_min2.setWrapSelectorWheel(true);
 
         numberpicker_max2.setMinValue(0);
-        numberpicker_max2.setMaxValue(100);
+        numberpicker_max2.setMaxValue(20);
         numberpicker_max2.setWrapSelectorWheel(true);
 
         numberpicker_min2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal){
                 textview_min2.setText("Select minimum \namount of \nparticipants: " + newVal);
+                numMin = newVal;
             }
         });
 
@@ -78,13 +84,14 @@ public class SearchActivity extends AppCompatActivity implements PostDataArrayIn
             @Override
             public void onValueChange(NumberPicker picker, int oldVal2, int newVal2){
                 textview_max2.setText("Select maximum \namount of \nparticipants: " + newVal2);
+                numMax = newVal2;
             }
         });
 
-        button_pick_date_time = findViewById(R.id.button_pick_date_time);
-        pick_date_time_results = findViewById(R.id.pick_date_time_results);
+        button_pick_date = findViewById(R.id.button_pick_date_time);
+        pick_date_results = findViewById(R.id.pick_date_time_results);
 
-        button_pick_date_time.setOnClickListener(new View.OnClickListener() {
+        button_pick_date.setOnClickListener(new View.OnClickListener() {
         @Override
             public void onClick(View view) {
                 Calendar c = Calendar.getInstance();
@@ -145,39 +152,35 @@ public class SearchActivity extends AppCompatActivity implements PostDataArrayIn
         dayFinal = i2;
 
         date = dayFinal + "-" + monthFinal + "-" + yearFinal;
-        Calendar c = Calendar.getInstance();
-        hour = c.get(Calendar.HOUR_OF_DAY);
-        minute = c.get(Calendar.MINUTE);
-
-        TimePickerDialog timePickerDialog = new TimePickerDialog(SearchActivity.this, (TimePickerDialog.OnTimeSetListener) SearchActivity.this,
-                hour, minute, android.text.format.DateFormat.is24HourFormat(this));
-        timePickerDialog.show();
     }
 
-    @Override
-    public void onTimeSet(TimePicker timePicker, int i, int i1) {
-        hourFinal = i;
-        minuteFinal = i1;
-
-        pick_date_time_results.setText("Date: " + dayFinal + "-" + monthFinal + "-" + yearFinal + "\n" +
-                "Time: " + hourFinal + ":" + minuteFinal);
-    }
 
     public void SearchClick(View view){
         HashMap<String, String> postData = new HashMap<>();
+        String TypeOfType = typeOfType.getText().toString();
+
         if(location != null){
           //  postData.put("location", location);
         }
         if(date != null){
             // postData.put("date",date);
         }
-        String Title = spinner.getSelectedItem().toString();
-        postData.put("title", Title);
+        if(numMin != numberpicker_min2.getMinValue()){
+            // postData.put("min_participants",numMin);
+        }
+        if(numMax > 2){
+            // postData.put("max_participants",numMax);
+        }
+        if(!TypeOfType.isEmpty()){
+            // postData.put("max_participants",numMax);
+        }
+
+        String type = spinner.getSelectedItem().toString();
+        postData.put("type", type);
 
         new PostDataArray("http://10.0.2.2:8000/search", postData , this).execute();
         //10.0.2.2
         //192.168.1.2
-        //130.242.98.63
     }
 
     public void homeClick(View view){
