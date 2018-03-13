@@ -73,11 +73,8 @@ exports.register_user = function(req, res) {
 };
 
 exports.login_user = function(req, res) {
-  users.findOne({
-    email: req.body.email
-  }, function(err, users) {
+  users.findOne({email: req.body.email}, function(err, users) {
       if (err) throw err;
-
       if (!users) {
           res.json({success: false, message: 'Login failed. Email not found.'});
       } else if (users) {

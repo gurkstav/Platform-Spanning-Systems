@@ -1,7 +1,10 @@
 'use strict';
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
-var Schema = mongoose.Schema;
+var mongoose = require('mongoose'),
+    express = require('express'),
+    bcrypt = require('bcrypt'),
+    Schema = mongoose.Schema,
+    app = express(),
+    jwt = require('jsonwebtoken');
 
 
 
@@ -43,6 +46,24 @@ usersSchema.methods.comparePassword = function (pwd, res) {
     });
 };
 
+usersSchema.methods.auth_user = function(token, res){
+    //var token = req.body.token;
+
+    if (token){
+        jwt.verify(token, app.get('superSecret'), function(decoded, err){
+            if (err) {
+                return res.json({success: false, message: 'Failed to authenticate'});
+            } else {
+                res(decoded);
+            }
+        });
+    } else {
+        return res.status(403).send({
+            success: false,
+            message: 'No token provided'
+        });
+    }
+};
 //return models:
 module.exports = mongoose.model('users', usersSchema);
 
