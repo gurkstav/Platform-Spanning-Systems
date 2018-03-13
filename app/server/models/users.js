@@ -1,6 +1,5 @@
 'use strict';
 var mongoose = require('mongoose'),
-    express = require('express'),
     bcrypt = require('bcrypt'),
     Schema = mongoose.Schema;
 
@@ -10,7 +9,7 @@ var mongoose = require('mongoose'),
 var usersSchema = new Schema({
     full_name: {type: String, required: true},
     ssn: {type: String, required: true},
-    email: {type: String, unique: true, required: true},
+    email: {type: String, unique: true, required: true, lowercase: true},
     password: {type: String, required: true}
     }
 

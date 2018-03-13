@@ -1,7 +1,5 @@
 var mongoose = require('mongoose'),
-    express = require('express'),
-    activities = mongoose.model('activities'),
-    users = mongoose.model('users');
+    activities = mongoose.model('activities');
 
 exports.list_all_activities = function(req, res){
     activities.find({}, function(err, activity){
